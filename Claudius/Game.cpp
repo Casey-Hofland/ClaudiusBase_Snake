@@ -38,29 +38,29 @@ void Game::Update(double dt)
 	// Player colliding on theirself.
 	for (int i = 0; i < playerOne.player_score; i++)
 	{
-		if (playerOne.trans.GetPosition() == playerOne.parts[i].trans.GetPosition())
+		if (playerOne.position == playerOne.parts[i].position)
 		{
 			playerOne.ResetPlayer();
 		}
 	}
 
 	// Player going out of X bounds.
-	if (playerOne.trans.GetX() > width || playerOne.trans.GetX() < 0)
+	if (playerOne.position.x > width || playerOne.position.x < 0)
 	{
 		playerOne.ResetPlayer();
 	}
 
 	// Player going out of Y bounds.
-	if (playerOne.trans.GetY() > height || playerOne.trans.GetY() < 0)
+	if (playerOne.position.y > height || playerOne.position.y < 0)
 	{
 		playerOne.ResetPlayer();
 	}
 
 	// Player collide on apple.
-	if (playerOne.trans.GetPosition() == apple.trans.GetPosition())
+	if (playerOne.position == apple.position)
 	{
 		playerOne.player_score++;
-		apple.trans.SetPosition((rand() % 125) * 10.0f, (rand() % 70) * 10.0f);
+		apple.position = { (rand() % 125) * 10.0f, (rand() % 70) * 10.0f };
 	}
 }
 

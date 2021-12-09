@@ -7,77 +7,60 @@ void Player::Initialize()
 {
 	color = { 0,255,0,0 };
 	rect = { 0, 0, size, size };
-	trans.SetPosition(starting_x, starting_y);
+	position = { starting_x, starting_y };
 	player_score = 0;
 
 	for (int i = 0; i < player_size; i++)
 	{
 		parts[i].color = { 255, 0, 0, 0 };
 		parts[i].rect = { 0, 0, size, size };
-		parts[i].trans.SetPosition(trans.GetX(), trans.GetY());
+		parts[i].position = position;
 	}
 }
 
 void Player::Render(RenderManager& renderManager)
 {
-	renderManager.Render(rect, color, trans);
+	renderManager.Render(rect, color, position);
 
 	for (int i = 0; i < player_score; i++)
 	{
-		renderManager.Render(parts[i].rect, parts[i].color, parts[i].trans);
+		renderManager.Render(parts[i].rect, parts[i].color, parts[i].position);
 	}
 }
 
 void Player::Update(double dt)
 {
-	x_array_difference[0] = trans.GetX() - parts[0].trans.GetX();
-	y_array_difference[0] = trans.GetY() - parts[0].trans.GetY();
+	x_array_difference[0] = position.x - parts[0].position.x;
+	y_array_difference[0] = position.y - parts[0].position.y;
 
 	for (int i = 1; i < (player_size - 1); i++)
 	{
-			x_array_difference[i] = parts[i].trans.GetX() - parts[i + 1].trans.GetX();
-			y_array_difference[i] = parts[i].trans.GetY() - parts[i + 1].trans.GetY();
+			x_array_difference[i] = parts[i].position.x - parts[i + 1].position.x;
+			y_array_difference[i] = parts[i].position.y - parts[i + 1].position.y;
 	}
 
 	if (moving_left == true)
 	{
-		trans.ChangePosition(-movement_speed, 0);
-		parts[0].trans.ChangePosition(x_array_difference[0], y_array_difference[0]);
-
-		for (int i = 1; i < player_size; i++)
-		{
-			parts[i].trans.ChangePosition(x_array_difference[i - 1], y_array_difference[i - 1]);
-		}
+		position.x -= movement_speed;
 	}
 	else if (moving_right == true)
 	{
-		trans.ChangePosition(movement_speed, 0);
-		parts[0].trans.ChangePosition(x_array_difference[0], y_array_difference[0]);
-
-		for (int i = 1; i < player_size; i++)
-		{
-			parts[i].trans.ChangePosition(x_array_difference[i - 1], y_array_difference[i - 1]);
-		}
+		position.x += movement_speed;
 	}
 	else if (moving_up == true)
 	{
-		trans.ChangePosition(0, -movement_speed);
-		parts[0].trans.ChangePosition(x_array_difference[0], y_array_difference[0]);
-
-		for (int i = 1; i < player_size; i++)
-		{
-			parts[i].trans.ChangePosition(x_array_difference[i - 1], y_array_difference[i - 1]);
-		}
+		position.y -= movement_speed;
 	}
 	else if (moving_down == true)
 	{
-		trans.ChangePosition(0, movement_speed);
-		parts[0].trans.ChangePosition(x_array_difference[0], y_array_difference[0]);
+		position.y += movement_speed;
+	}
 
-		for (int i = 1; i < player_size; i++)
-		{
-			parts[i].trans.ChangePosition(x_array_difference[i - 1], y_array_difference[i - 1]);
-		}
+	parts[0].position = parts[0].position + Vector2{ x_array_difference[0], y_array_difference[0] };
+
+	for (int i = 1; i < player_size; i++)
+	{
+		parts[i].position = parts[i].position + Vector2{ x_array_difference[i - 1], y_array_difference[i - 1] };
 	}
 }
 
@@ -121,5 +104,5 @@ void Player::ResetPlayer()
 	moving_up = false;
 	moving_down = false;
 
-	trans.SetPosition(starting_x, starting_y);
+	position = { starting_x, starting_y };
 }

@@ -14,12 +14,12 @@ void Apple::Initialize(int width, int height)
 {
 	color = { 0, 255, 0, 0 };
 	rect = { 0, 0, width, height };
-	trans.SetPosition(100, 200);
+	position = { 100, 200 };
 }
 
 void Apple::Render(RenderManager& renderManager)
 {
-	renderManager.Render(rect, color, trans);
+	renderManager.Render(rect, color, position);
 }
 
 
