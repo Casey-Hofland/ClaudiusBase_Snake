@@ -50,9 +50,9 @@ int main()
 		{
 			switch (e.type)
 			{
-			case SDL_QUIT: running = false; break;
-			case SDL_KEYDOWN: game.OnKeyDown(e.key.keysym.sym); break;
-			case SDL_KEYUP: game.OnKeyUp(e.key.keysym.sym); break;
+			case SDL_EventType::SDL_QUIT: running = false; break;
+			case SDL_EventType::SDL_KEYDOWN: game.OnKeyDown(e.key.keysym.sym); break;
+			case SDL_EventType::SDL_KEYUP: game.OnKeyUp(e.key.keysym.sym); break;
 			}
 		}
 
