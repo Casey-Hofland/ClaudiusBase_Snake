@@ -1,5 +1,10 @@
 #include "ResourceManager.h"
 
+ResourceManager::ResourceManager(ResourceImpl& impl)
+	: impl(impl) 
+{
+}
+
 bool ResourceManager::LoadImageFromFile(Image& image, const std::string& filePath)
 {
 	auto it = impl.textures.begin();

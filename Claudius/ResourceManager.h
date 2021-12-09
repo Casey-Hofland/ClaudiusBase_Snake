@@ -8,8 +8,7 @@ struct Sound;
 
 struct ResourceManager
 {
-	ResourceManager(ResourceImpl& impl) : impl(impl) {};
-	~ResourceManager() {};
+	ResourceManager(ResourceImpl& impl);
 	
 	bool LoadImageFromFile(Image& image, const std::string &filePath);
 	bool LoadSoundFromFile(Sound& sound, const std::string &filePath); // TODO

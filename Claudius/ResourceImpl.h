@@ -12,8 +12,10 @@
 struct ResourceImpl
 {
 	ResourceImpl(SDL_Renderer* renderer);
+
 	std::vector<std::pair<std::string, SDL_Texture*>> textures;
 	SDL_Renderer* renderer;
+	
 	SDL_Texture* GetTexture(unsigned int id);
 };
 
