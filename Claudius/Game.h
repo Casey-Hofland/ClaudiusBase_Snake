@@ -16,7 +16,7 @@ struct ResourceManager;
 
 class Game
 {
-	Player playerOne;
+	Player playerOne{ Vector2{300.0f, 300.0f}, 10 };
 	Apple apple;
 
 	ResourceManager& m_resourceManager;

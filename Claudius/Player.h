@@ -1,5 +1,6 @@
 #pragma once		// #pragma once == Compile this file once.
 
+#include <queue>
 #include "Vector2.h"
 
 #include <CodeAnalysis/Warnings.h>
@@ -10,41 +11,24 @@
 
 struct RenderManager;
 
-struct Player
+class Player
 {
-	struct PlayerPart
-	{
-		Vector2 position;
-		SDL_Color color;
-		SDL_Rect rect;
-	};
+	Player(Vector2 position, int size);
 
-	//Static == belongs to the class, not the object of the class.
-	static const int player_size = 50;
-	PlayerPart parts[player_size];
-	
-	Vector2 position;
-	SDL_Color color;
-	SDL_Rect rect;
+	std::deque<Vector2> bodyPositions{};
+
+	Vector2 headPosition{};
+
+	SDL_Color headColor{ 0, SDL_MAX_UINT8, 0, SDL_MAX_UINT8 };
+	SDL_Color bodyColor{ SDL_MAX_UINT8 , 0, 0, SDL_MAX_UINT8 };
+	SDL_Rect rect{};
 	void OnKeyDown(SDL_Keycode key);
-	void Initialize();
 	void Render(RenderManager& renderManager);				// A reference or pointer doesn't need to be #include, just a forward declare.
 	void Update(double dt);
-	void ResetPlayer();
 
-	int size = 10;
-	const float movement_speed = 10.0f;
-	const float starting_x = 300.0f;
-	const float starting_y = 300.0f;
+	float movement_speed{ 10.0f };
 
-	bool moving_right = false;
-	bool moving_left = false;
-	bool moving_up = false;
-	bool moving_down = false;
-	bool new_snake = false;
+	Vector2 movement{};
 
-	float x_array_difference[player_size] = {};
-	float y_array_difference[player_size] = {};
-
-	int player_score = 0;
+	int player_score{ 0 };
 };

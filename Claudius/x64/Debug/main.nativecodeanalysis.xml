@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>ResourceManager.h</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'ResourceManager::ResourceManager' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>ResourceManager::{ctor}</FUNCTION>
+    <DECORATED>??0ResourceManager@@QEAA@AEAUResourceImpl@@@Z</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>ResourceManager.h</FILENAME>
+      <LINE>12</LINE>
+      <COLUMN>2</COLUMN>
+    </SFA>
+    <DEFECTCODE>26432</DEFECTCODE>
+    <DESCRIPTION>If you define or delete any default operation in the type 'struct ResourceManager', define or delete them all (c.21).</DESCRIPTION>
+    <FUNCTION>ResourceManager::{dtor}</FUNCTION>
+    <DECORATED>??1ResourceManager@@QEAA@XZ</DECORATED>
+    <FUNCLINE>12</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>45</LINE>
+      <COLUMN>7</COLUMN>
+    </SFA>
+    <DEFECTCODE>26496</DEFECTCODE>
+    <DESCRIPTION>The variable 'dt' does not change after construction, mark it as const (con.4).</DESCRIPTION>
+    <FUNCTION>main</FUNCTION>
+    <DECORATED>main</DECORATED>
+    <FUNCLINE>15</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>51</LINE>
+      <COLUMN>3</COLUMN>
+    </SFA>
+    <DEFECTCODE>26818</DEFECTCODE>
+    <DESCRIPTION>Switch statement does not cover all cases. Consider adding a 'default' label (es.79).</DESCRIPTION>
+    <FUNCTION>main</FUNCTION>
+    <DECORATED>main</DECORATED>
+    <FUNCLINE>15</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>71</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>26472</DEFECTCODE>
+    <DESCRIPTION>Don't use a static_cast for arithmetic conversions. Use brace initialization, gsl::narrow_cast or gsl::narrow (type.1).</DESCRIPTION>
+    <FUNCTION>main</FUNCTION>
+    <DECORATED>main</DECORATED>
+    <FUNCLINE>15</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>main.cpp</FILENAME>
+      <LINE>72</LINE>
+      <COLUMN>9</COLUMN>
+    </SFA>
+    <DEFECTCODE>26472</DEFECTCODE>
+    <DESCRIPTION>Don't use a static_cast for arithmetic conversions. Use brace initialization, gsl::narrow_cast or gsl::narrow (type.1).</DESCRIPTION>
+    <FUNCTION>main</FUNCTION>
+    <DECORATED>main</DECORATED>
+    <FUNCLINE>15</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

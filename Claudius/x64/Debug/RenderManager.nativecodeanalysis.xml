@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>RenderManager.cpp</FILENAME>
+      <LINE>13</LINE>
+      <COLUMN>20</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'RenderManager::Clear' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>RenderManager::Clear</FUNCTION>
+    <DECORATED>?Clear@RenderManager@@QEAAXXZ</DECORATED>
+    <FUNCLINE>13</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

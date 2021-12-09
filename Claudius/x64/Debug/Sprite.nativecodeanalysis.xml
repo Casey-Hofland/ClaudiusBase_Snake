@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26455</DEFECTCODE>
+    <DESCRIPTION>Default constructor may not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Sprite::{ctor}</FUNCTION>
+    <DECORATED>??0Sprite@@QEAA@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>7</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26432</DEFECTCODE>
+    <DESCRIPTION>If you define or delete any default operation in the type 'struct Sprite', define or delete them all (c.21).</DESCRIPTION>
+    <FUNCTION>Sprite::{ctor}</FUNCTION>
+    <DECORATED>??0Sprite@@QEAA@AEBU0@@Z</DECORATED>
+    <FUNCLINE>7</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>7</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'Sprite::Sprite' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Sprite::{ctor}</FUNCTION>
+    <DECORATED>??0Sprite@@QEAA@AEBU0@@Z</DECORATED>
+    <FUNCLINE>7</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'Sprite::Sprite' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Sprite::{ctor}</FUNCTION>
+    <DECORATED>??0Sprite@@QEAA@AEAUImage@@@Z</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>18</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'Sprite::Sprite' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Sprite::{ctor}</FUNCTION>
+    <DECORATED>??0Sprite@@QEAA@USDL_Rect@@USDL_Color@@AEAUImage@@@Z</DECORATED>
+    <FUNCLINE>18</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>22</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'Sprite::Sprite' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Sprite::{ctor}</FUNCTION>
+    <DECORATED>??0Sprite@@QEAA@HHHHUSDL_Color@@AEAUImage@@@Z</DECORATED>
+    <FUNCLINE>22</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>29</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'Sprite::Sprite' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Sprite::{ctor}</FUNCTION>
+    <DECORATED>??0Sprite@@QEAA@USDL_Rect@@EEEEAEAUImage@@@Z</DECORATED>
+    <FUNCLINE>29</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>36</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'Sprite::Sprite' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Sprite::{ctor}</FUNCTION>
+    <DECORATED>??0Sprite@@QEAA@HHHHEEEEAEAUImage@@@Z</DECORATED>
+    <FUNCLINE>36</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>43</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26460</DEFECTCODE>
+    <DESCRIPTION>The reference argument 'image' for function 'Sprite::SetImage' can be marked as const (con.3).</DESCRIPTION>
+    <FUNCTION>Sprite::SetImage</FUNCTION>
+    <DECORATED>?SetImage@Sprite@@QEAAXAEAUImage@@@Z</DECORATED>
+    <FUNCLINE>43</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>43</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'Sprite::SetImage' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Sprite::SetImage</FUNCTION>
+    <DECORATED>?SetImage@Sprite@@QEAAXAEAUImage@@@Z</DECORATED>
+    <FUNCLINE>43</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>48</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'Sprite::SetSource' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Sprite::SetSource</FUNCTION>
+    <DECORATED>?SetSource@Sprite@@QEAAXHHHH@Z</DECORATED>
+    <FUNCLINE>48</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Sprite.cpp</FILENAME>
+      <LINE>53</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'Sprite::SetColor' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Sprite::SetColor</FUNCTION>
+    <DECORATED>?SetColor@Sprite@@QEAAXEEEE@Z</DECORATED>
+    <FUNCLINE>53</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

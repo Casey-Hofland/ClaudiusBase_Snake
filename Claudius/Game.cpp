@@ -7,7 +7,6 @@
 Game::Game(ResourceManager& resourceManager) : m_resourceManager(resourceManager), width(1250), height(700)
 {
 	//Player test, moving two players to collide with each other.
-	playerOne.Initialize();
 	apple.Initialize(10, 10);
 }
 
@@ -38,28 +37,45 @@ void Game::Update(double dt)
 	// Player colliding on theirself.
 	for (int i = 0; i < playerOne.player_score; i++)
 	{
-		if (playerOne.position == playerOne.parts[i].position)
+		if (playerOne.headPosition == playerOne.bodyPositions[i])
 		{
-			playerOne.ResetPlayer();
+			playerOne = { Vector2{300.0f, 300.0f}, 10 };
 		}
 	}
 
 	// Player going out of X bounds.
-	if (playerOne.position.x > width || playerOne.position.x < 0)
+	if (playerOne.headPosition.x > width || playerOne.headPosition.x < 0)
 	{
-		playerOne.ResetPlayer();
+		playerOne = { Vector2{300.0f, 300.0f}, 10 };
 	}
 
 	// Player going out of Y bounds.
-	if (playerOne.position.y > height || playerOne.position.y < 0)
+	if (playerOne.headPosition.y > height || playerOne.headPosition.y < 0)
 	{
-		playerOne.ResetPlayer();
+		playerOne = { Vector2{300.0f, 300.0f}, 10 };
 	}
 
 	// Player collide on apple.
-	if (playerOne.position == apple.position)
+	if (playerOne.headPosition == apple.position)
 	{
 		playerOne.player_score++;
+		playerOne.bodyPositions.push_front(playerOne.headPosition);
+
+		//if (playerOne.bodyPositions.empty())
+		//{
+		//	playerOne.bodyPositions.push_back(playerOne.headPosition - playerOne.movement);
+		//}
+		//else if (playerOne.bodyPositions.size() == 1)
+		//{
+		//	const auto dir = playerOne.bodyPositions.back() - playerOne.headPosition;
+		//	playerOne.bodyPositions.push_back(playerOne.bodyPositions.back() + dir);
+		//}
+		//else
+		//{
+		//	const auto dir = playerOne.bodyPositions.back() - playerOne.bodyPositions.at(playerOne.bodyPositions.size() - 1);
+		//	playerOne.bodyPositions.push_back(playerOne.bodyPositions.back() + dir);
+		//}
+
 		apple.position = { (rand() % 125) * 10.0f, (rand() % 70) * 10.0f };
 	}
 }

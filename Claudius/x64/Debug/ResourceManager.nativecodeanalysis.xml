@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>ResourceManager.h</FILENAME>
+      <LINE>11</LINE>
+      <COLUMN>1</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'ResourceManager::ResourceManager' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>ResourceManager::{ctor}</FUNCTION>
+    <DECORATED>??0ResourceManager@@QEAA@AEAUResourceImpl@@@Z</DECORATED>
+    <FUNCLINE>11</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>ResourceManager.h</FILENAME>
+      <LINE>12</LINE>
+      <COLUMN>2</COLUMN>
+    </SFA>
+    <DEFECTCODE>26432</DEFECTCODE>
+    <DESCRIPTION>If you define or delete any default operation in the type 'struct ResourceManager', define or delete them all (c.21).</DESCRIPTION>
+    <FUNCTION>ResourceManager::{dtor}</FUNCTION>
+    <DECORATED>??1ResourceManager@@QEAA@XZ</DECORATED>
+    <FUNCLINE>12</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>ResourceManager.cpp</FILENAME>
+      <LINE>24</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>26472</DEFECTCODE>
+    <DESCRIPTION>Don't use a static_cast for arithmetic conversions. Use brace initialization, gsl::narrow_cast or gsl::narrow (type.1).</DESCRIPTION>
+    <FUNCTION>ResourceManager::LoadImageFromFile</FUNCTION>
+    <DECORATED>?LoadImageFromFile@ResourceManager@@QEAA_NAEAUImage@@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@@Z</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Game.cpp</FILENAME>
+      <LINE>13</LINE>
+      <COLUMN>7</COLUMN>
+    </SFA>
+    <DEFECTCODE>26432</DEFECTCODE>
+    <DESCRIPTION>If you define or delete any default operation in the type 'class Game', define or delete them all (c.21).</DESCRIPTION>
+    <FUNCTION>Game::{dtor}</FUNCTION>
+    <DECORATED>??1Game@@QEAA@XZ</DECORATED>
+    <FUNCLINE>13</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Game.cpp</FILENAME>
+      <LINE>40</LINE>
+      <COLUMN>57</COLUMN>
+    </SFA>
+    <DEFECTCODE>26446</DEFECTCODE>
+    <DESCRIPTION>Prefer to use gsl::at() instead of unchecked subscript operator (bounds.4).</DESCRIPTION>
+    <FUNCTION>Game::Update</FUNCTION>
+    <DECORATED>?Update@Game@@QEAAXN@Z</DECORATED>
+    <FUNCLINE>25</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design &amp; Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\</FILEPATH>
+      <FILENAME>Game.cpp</FILENAME>
+      <LINE>94</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>26440</DEFECTCODE>
+    <DESCRIPTION>Function 'Game::OnKeyUp' can be declared 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>Game::OnKeyUp</FUNCTION>
+    <DECORATED>?OnKeyUp@Game@@QEAAXH@Z</DECORATED>
+    <FUNCLINE>94</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

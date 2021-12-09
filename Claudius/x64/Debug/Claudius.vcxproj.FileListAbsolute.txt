@@ -1,0 +1,2 @@
+C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design & Best Practices\Refactor Assignment\ClaudiusBase_Snake\Build\x64\Debug\Claudius.exe.lastcodeanalysissucceeded
+C:\Users\SKIKK\Desktop\Educations\HKU\Jaar 4\Exchange Uppsala\API Design & Best Practices\Refactor Assignment\ClaudiusBase_Snake\Claudius\x64\Debug\NativeCodeAnalysis.read.1.tlog
