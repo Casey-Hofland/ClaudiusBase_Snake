@@ -1,4 +1,9 @@
-﻿#include "SDL.h"
+﻿#include <CodeAnalysis/Warnings.h>
+#pragma warning(push)
+#pragma warning(disable: ALL_CODE_ANALYSIS_WARNINGS)
+#include "SDL.h"
+#pragma warning(pop)
+
 #include "RenderManager.h"
 #include "ResourceManager.h"
 #include "Game.h"
