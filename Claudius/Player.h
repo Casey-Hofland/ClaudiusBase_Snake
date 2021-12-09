@@ -13,6 +13,7 @@ struct RenderManager;
 
 class Player
 {
+public:
 	Player(Vector2 position, int size);
 
 	std::deque<Vector2> bodyPositions{};
