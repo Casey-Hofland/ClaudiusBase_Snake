@@ -1,6 +1,6 @@
 #pragma once		// #pragma once == Compile this file once.
 
-#include "Transform.h"
+#include "Vector2.h"
 
 #include <CodeAnalysis/Warnings.h>
 #pragma warning(push)
@@ -14,7 +14,7 @@ struct Player
 {
 	struct PlayerPart
 	{
-		Transform trans;
+		Vector2 position;
 		SDL_Color color;
 		SDL_Rect rect;
 	};
@@ -23,7 +23,7 @@ struct Player
 	static const int player_size = 50;
 	PlayerPart parts[player_size];
 	
-	Transform trans;
+	Vector2 position;
 	SDL_Color color;
 	SDL_Rect rect;
 	void OnKeyDown(SDL_Keycode key);

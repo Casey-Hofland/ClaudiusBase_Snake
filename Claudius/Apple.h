@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Transform.h"
+#include "Vector2.h"
 
 #include <CodeAnalysis/Warnings.h>
 #pragma warning(push)
@@ -19,7 +19,7 @@ struct Apple
 
 	SDL_Rect rect{};
 	SDL_Color color{};
-	Transform trans;
+	Vector2 position{};
 
 	bool new_apple = false;
 };
