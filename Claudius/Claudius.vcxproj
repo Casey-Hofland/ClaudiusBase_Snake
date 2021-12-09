@@ -141,7 +141,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Apple.cpp" />
-    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Image.cpp" />
@@ -155,7 +154,6 @@
   <ItemGroup>
     <ClInclude Include="Apple.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="Collider.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="KeyCode.h" />
