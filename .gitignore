@@ -32,3 +32,4 @@
 *.app
 Build
 .vs
+Claudius/x64/Debug
