@@ -4,13 +4,10 @@
 #include "RenderManager.h"
 #include <iostream>
 
-Game::Game(ResourceManager& resourceManager) : m_resourceManager(resourceManager), width(1250), height(700)
-{
-	//Player test, moving two players to collide with each other.
-	apple.Initialize(10, 10);
-}
-
-Game::~Game()
+Game::Game(ResourceManager& resourceManager) 
+	: m_resourceManager(resourceManager)
+	, width(1250)
+	, height(700)
 {
 }
 

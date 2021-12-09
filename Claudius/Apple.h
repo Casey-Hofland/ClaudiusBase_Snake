@@ -12,14 +12,10 @@ struct RenderManager; //<- Kinda like #include "RenderManager.h", not exactly. C
 
 struct Apple
 {
-
-	Apple();
+	Apple(int width, int height);
 	void Render(RenderManager& renderManager);
-	void Initialize(int width, int height);
 
 	SDL_Rect rect{};
-	SDL_Color color{};
-	Vector2 position{};
-
-	bool new_apple = false;
+	SDL_Color color{ 0, SDL_MAX_UINT8, 0, SDL_MAX_SINT8 };
+	Vector2 position{ 100.0f, 200.0f };
 };
