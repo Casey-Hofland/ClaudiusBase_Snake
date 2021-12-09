@@ -1,8 +1,6 @@
 #pragma once		// #pragma once == Compile this file once.
 
 #include "Transform.h"
-#include "Color.h"
-#include "Rectangle.h"
 
 #include <CodeAnalysis/Warnings.h>
 #pragma warning(push)
@@ -17,8 +15,8 @@ struct Player
 	struct PlayerPart
 	{
 		Transform trans;
-		Color color;
-		Rectangle rect;
+		SDL_Color color;
+		SDL_Rect rect;
 	};
 
 	//Static == belongs to the class, not the object of the class.
@@ -26,8 +24,8 @@ struct Player
 	PlayerPart parts[player_size];
 	
 	Transform trans;
-	Color color;
-	Rectangle rect;
+	SDL_Color color;
+	SDL_Rect rect;
 	void OnKeyDown(SDL_Keycode key);
 	void Initialize();
 	void Render(RenderManager& renderManager);				// A reference or pointer doesn't need to be #include, just a forward declare.

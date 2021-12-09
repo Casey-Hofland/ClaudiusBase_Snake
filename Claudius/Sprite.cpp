@@ -8,23 +8,35 @@ Sprite::Sprite(const Sprite& rhs) : source(rhs.source), color(rhs.color), image(
 {
 }
 
-Sprite::Sprite(Image& image) : source(0, 0, 0, 0), color(0, 0, 0, 0), image(&image)
+Sprite::Sprite(Image& image) 
+	: source{ 0, 0, 0, 0 }
+	, color{ 0, 0, 0, 0 }
+	, image(&image)
 {
 }
 
-Sprite::Sprite(Rectangle source, Color color, Image& image) : source(source), color(color), image(&image)
+Sprite::Sprite(SDL_Rect source, SDL_Color color, Image& image) : source(source), color(color), image(&image)
 {
 }
 
-Sprite::Sprite(int x, int y, int w, int h, Color color, Image& image) : source(x,y,w,h), color(color), image(&image)
+Sprite::Sprite(int x, int y, int w, int h, SDL_Color color, Image& image) 
+	: source{ x,y,w,h }
+	, color(color)
+	, image(&image)
 {
 }
 
-Sprite::Sprite(Rectangle source, char r, char g, char b, char a, Image& image) : source(source), color(r,g,b,a), image(&image)
+Sprite::Sprite(SDL_Rect source, Uint8 r, Uint8 g, Uint8 b, Uint8 a, Image& image)
+	: source(source)
+	, color{ r, g, b, a }
+	, image(&image)
 {
 }
 
-Sprite::Sprite(int x, int y, int w, int h, char r, char g, char b, char a, Image& image) : source(x,y,w,h), color(r,g,b,a), image(&image)
+Sprite::Sprite(int x, int y, int w, int h, Uint8 r, Uint8 g, Uint8 b, Uint8 a, Image& image)
+	: source{ x,y,w,h }
+	, color{ r, g, b, a }
+	, image(&image)
 {
 }
 
@@ -35,10 +47,10 @@ void Sprite::SetImage(Image& image)
 
 void Sprite::SetSource(int x, int y, int w, int h)
 {
-	source.SetBounds(x, y, w, h);
+	source = { x, y, w, h };
 }
 
-void Sprite::SetColor(char r, char g, char b, char a)
+void Sprite::SetColor(Uint8 r, Uint8 g, Uint8 b, Uint8 a)
 {
-	color.SetColor(r, g, b, a);
+	color = { r, g, b, a };
 }
