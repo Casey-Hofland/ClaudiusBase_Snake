@@ -5,7 +5,8 @@
 #include "RenderManager.h"
 
 Apple::Apple(int width, int height)
-	: rect{ 0, 0, width, height }
+	: position{ 100.0f, 200.0f }
+	, rect{ 100, 200, width, height }
 {
 }
 

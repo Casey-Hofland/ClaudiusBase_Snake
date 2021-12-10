@@ -5,17 +5,17 @@
 
 Player::Player(Vector2 position, int size)
 	: headPosition{ position }
-	, rect{ 0, 0, size, size }
+	, headRect{ static_cast<int>(position.x), static_cast<int>(position.y), size, size }
 {
 }
 
 void Player::Render(RenderManager& renderManager)
 {
-	renderManager.Render(rect, headColor, headPosition);
 	for (const auto& bodyPosition : bodyPositions)
 	{
-		renderManager.Render(rect, bodyColor, bodyPosition);
+		renderManager.Render(headRect, bodyColor, bodyPosition);
 	}
+	renderManager.Render(headRect, headColor, headPosition);
 }
 
 void Player::Update(float deltaTime)
@@ -28,6 +28,9 @@ void Player::Update(float deltaTime)
 
 	headPosition = headPosition + movement;
 	//headPosition = headPosition + movement * deltaTime;
+	headRect.x = headPosition.x;
+	headRect.y = headPosition.y;
+}
 
 void Player::Extend()
 {

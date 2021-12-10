@@ -53,12 +53,14 @@ void Game::Update(float deltaTime)
 	}
 
 	// Player collide on apple.
-	if (playerOne.headPosition == apple.position)
+	if (SDL_HasIntersection(&playerOne.headRect, &apple.rect))
 	{
 		playerOne.player_score++;
 		playerOne.Extend();
 
 		apple.position = { (rand() % 125) * 10.0f, (rand() % 70) * 10.0f };
+		apple.rect.x = apple.position.x;
+		apple.rect.y = apple.position.y;
 	}
 }
 
