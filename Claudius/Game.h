@@ -27,7 +27,7 @@ public:
 
 	Game(ResourceManager& resourceManager);
 	bool Enter(int& width, int& height, std::string& title);
-	void Update(double dt);
+	void Update(float deltaTime);
 	void Render(RenderManager& rendererManager);
 	void OnKeyDown(SDL_Keycode key);
 	void OnKeyUp(SDL_Keycode key);

@@ -42,9 +42,17 @@ int main()
 	SDL_SetWindowTitle(window, title.c_str());
 	SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 	
-	float dt = 1.0f / 60.0f;
+	Uint64 now{ SDL_GetPerformanceCounter() };
+	Uint64 last{};
+	float deltaTime{};
 	while (running)
 	{
+		// Calculate deltaTime
+		last = now;
+		now = SDL_GetPerformanceCounter();
+
+		deltaTime = ((now - last) * 1000.0f / SDL_GetPerformanceFrequency()) * 0.01f;
+
 		SDL_Event e;
 		while (SDL_PollEvent(&e))
 		{
@@ -56,7 +64,7 @@ int main()
 			}
 		}
 
-		game.Update(dt);
+		game.Update(deltaTime);
 		game.Render(renderManager);
 
 		SDL_SetRenderDrawColor(renderer,0,0,0,0);

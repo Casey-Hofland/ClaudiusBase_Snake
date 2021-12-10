@@ -19,7 +19,7 @@ bool Game::Enter(int& width, int& height, std::string& title)
 	return true;
 }
 
-void Game::Update(double dt)
+void Game::Update(float deltaTime)
 {
 	// dt means delta time.
 	// timer += dt; <- check Game.h
@@ -29,7 +29,7 @@ void Game::Update(double dt)
 	// timer = 0.0f; or timer -= updateInterval;
 	//}
 
-	playerOne.Update(dt);
+	playerOne.Update(deltaTime);
 
 	// Player colliding on theirself.
 	for (int i = 0; i < playerOne.player_score; i++)
@@ -56,22 +56,7 @@ void Game::Update(double dt)
 	if (playerOne.headPosition == apple.position)
 	{
 		playerOne.player_score++;
-		playerOne.bodyPositions.push_front(playerOne.headPosition);
-
-		//if (playerOne.bodyPositions.empty())
-		//{
-		//	playerOne.bodyPositions.push_back(playerOne.headPosition - playerOne.movement);
-		//}
-		//else if (playerOne.bodyPositions.size() == 1)
-		//{
-		//	const auto dir = playerOne.bodyPositions.back() - playerOne.headPosition;
-		//	playerOne.bodyPositions.push_back(playerOne.bodyPositions.back() + dir);
-		//}
-		//else
-		//{
-		//	const auto dir = playerOne.bodyPositions.back() - playerOne.bodyPositions.at(playerOne.bodyPositions.size() - 1);
-		//	playerOne.bodyPositions.push_back(playerOne.bodyPositions.back() + dir);
-		//}
+		playerOne.Extend();
 
 		apple.position = { (rand() % 125) * 10.0f, (rand() % 70) * 10.0f };
 	}

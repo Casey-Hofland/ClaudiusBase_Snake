@@ -25,7 +25,8 @@ public:
 	SDL_Rect rect{};
 	void OnKeyDown(SDL_Keycode key);
 	void Render(RenderManager& renderManager);				// A reference or pointer doesn't need to be #include, just a forward declare.
-	void Update(double dt);
+	void Update(float deltaTime);
+	void Extend();
 
 	float movement_speed{ 10.0f };
 

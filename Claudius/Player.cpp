@@ -18,7 +18,7 @@ void Player::Render(RenderManager& renderManager)
 	}
 }
 
-void Player::Update(double dt)
+void Player::Update(float deltaTime)
 {
 	if (!bodyPositions.empty())
 	{
@@ -27,6 +27,24 @@ void Player::Update(double dt)
 	}
 
 	headPosition = headPosition + movement;
+	//headPosition = headPosition + movement * deltaTime;
+
+void Player::Extend()
+{
+	if (bodyPositions.empty())
+	{
+		bodyPositions.push_back(headPosition - movement);
+	}
+	else if (bodyPositions.size() == 1)
+	{
+		const auto dir = bodyPositions.back() - headPosition;
+		bodyPositions.push_back(bodyPositions.back() + dir);
+	}
+	else
+	{
+		const auto dir = bodyPositions.back() - bodyPositions.at(bodyPositions.size() - 1);
+		bodyPositions.push_back(bodyPositions.back() + dir);
+	}
 }
 
 void Player::OnKeyDown(SDL_Keycode key)
