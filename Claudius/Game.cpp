@@ -4,14 +4,6 @@
 #include "RenderManager.h"
 #include <iostream>
 
-bool Game::Enter(int& width, int& height, std::string& title)
-{
-	width = this->width;	//1250
-	height = this->height;	// 700
-	title = "Snake";
-	return true;
-}
-
 void Game::Update(float deltaTime)
 {
 	// dt means delta time.

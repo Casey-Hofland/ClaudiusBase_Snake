@@ -23,7 +23,6 @@ public:
 	int width{ 1250 };
 	int height{ 700 };
 
-	bool Enter(int& width, int& height, std::string& title);
 	void Update(float deltaTime);
 	void Render(RenderManager& rendererManager);
 	void OnKeyDown(SDL_Keycode key);

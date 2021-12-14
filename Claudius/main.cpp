@@ -34,10 +34,13 @@ int main()
 	ResourceManager resourceManager(resourceImpl);
 	Game game{};
 
-	int width = 500;
-	int height = 500;
-	std::string title = "";
-	game.Enter(width, height, title);
+	constexpr int width = 1250;
+	constexpr int height = 700;
+	const std::string title = "Snake";
+
+	game.width = width;
+	game.height = height;
+
 	SDL_SetWindowSize(window, width, height);
 	SDL_SetWindowTitle(window, title.c_str());
 	SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
