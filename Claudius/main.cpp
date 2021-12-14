@@ -32,7 +32,7 @@ int main()
 	RenderManager renderManager;
 	ResourceImpl resourceImpl(renderer);
 	ResourceManager resourceManager(resourceImpl);
-	Game game(resourceManager);
+	Game game{};
 
 	int width = 500;
 	int height = 500;

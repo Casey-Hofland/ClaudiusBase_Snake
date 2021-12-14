@@ -4,13 +4,6 @@
 #include "RenderManager.h"
 #include <iostream>
 
-Game::Game(ResourceManager& resourceManager) 
-	: m_resourceManager(resourceManager)
-	, width(1250)
-	, height(700)
-{
-}
-
 bool Game::Enter(int& width, int& height, std::string& title)
 {
 	width = this->width;	//1250

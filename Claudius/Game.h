@@ -19,13 +19,10 @@ class Game
 	Player playerOne{ Vector2{300.0f, 300.0f}, 10 };
 	Apple apple{ 10, 10 };
 
-	ResourceManager& m_resourceManager;
-
 public:
-	int width{};
-	int height{};
+	int width{ 1250 };
+	int height{ 700 };
 
-	Game(ResourceManager& resourceManager);
 	bool Enter(int& width, int& height, std::string& title);
 	void Update(float deltaTime);
 	void Render(RenderManager& rendererManager);
