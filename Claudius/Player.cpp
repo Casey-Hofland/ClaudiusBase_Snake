@@ -20,6 +20,8 @@ void Player::Render(RenderManager& renderManager)
 
 void Player::Update(float deltaTime)
 {
+	UpdateInput();
+
 	if (!bodyPositions.empty())
 	{
 		bodyPositions.pop_back();
@@ -50,21 +52,21 @@ void Player::Extend()
 	}
 }
 
-void Player::OnKeyDown(SDL_Keycode key)
+void Player::UpdateInput()
 {
-	if (key == SDLK_LEFT)
+	if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_LEFT))
 	{
 		movement = { -movement_speed, 0.0f };
 	}
-	else if (key == SDLK_RIGHT)
+	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_RIGHT))
 	{
 		movement = { movement_speed, 0.0f };
 	}
-	else if (key == SDLK_UP)
+	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_UP))
 	{
 		movement = { 0.0f, -movement_speed };
 	}
-	else if (key == SDLK_DOWN)
+	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_DOWN))
 	{
 		movement = { 0.0f, movement_speed };
 	}

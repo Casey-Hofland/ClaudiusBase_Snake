@@ -25,6 +25,4 @@ public:
 
 	void Update(float deltaTime);
 	void Render(RenderManager& rendererManager);
-	void OnKeyDown(SDL_Keycode key);
-	void OnKeyUp(SDL_Keycode key);
 };

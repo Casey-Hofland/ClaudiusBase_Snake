@@ -55,11 +55,3 @@ void Game::Render(RenderManager& renderManager)
 	apple.Render(renderManager);
 }
 
-void Game::OnKeyDown(SDL_Keycode key)
-{
-	playerOne.OnKeyDown(key);
-}
-
-void Game::OnKeyUp(SDL_Keycode key)
-{
-}

@@ -2,6 +2,7 @@
 
 #include <queue>
 #include "Vector2.h"
+#include "Input.h"
 
 #include <CodeAnalysis/Warnings.h>
 #pragma warning(push)
@@ -13,6 +14,9 @@ struct RenderManager;
 
 class Player
 {
+private:
+	void UpdateInput();
+
 public:
 	Player(Vector2 position, int size);
 
@@ -23,7 +27,6 @@ public:
 	SDL_Color headColor{ 0, SDL_MAX_UINT8, 0, SDL_MAX_UINT8 };
 	SDL_Color bodyColor{ SDL_MAX_UINT8 , 0, 0, SDL_MAX_UINT8 };
 	SDL_Rect headRect{};
-	void OnKeyDown(SDL_Keycode key);
 	void Render(RenderManager& renderManager);				// A reference or pointer doesn't need to be #include, just a forward declare.
 	void Update(float deltaTime);
 	void Extend();

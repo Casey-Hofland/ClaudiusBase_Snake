@@ -9,6 +9,7 @@
 #include "Game.h"
 #include "Sprite.h"
 #include "Image.h"
+#include "Input.h"
 
 #undef main
 
@@ -55,17 +56,6 @@ int main()
 		now = SDL_GetPerformanceCounter();
 
 		deltaTime = ((now - last) * 1000.0f / SDL_GetPerformanceFrequency()) * 0.01f;
-
-		SDL_Event e;
-		while (SDL_PollEvent(&e))
-		{
-			switch (e.type)
-			{
-			case SDL_EventType::SDL_QUIT: running = false; break;
-			case SDL_EventType::SDL_KEYDOWN: game.OnKeyDown(e.key.keysym.sym); break;
-			case SDL_EventType::SDL_KEYUP: game.OnKeyUp(e.key.keysym.sym); break;
-			}
-		}
 
 		game.Update(deltaTime);
 		game.Render(renderManager);
