@@ -108,7 +108,8 @@ Vector2 operator/(const float& lhs, Vector2 rhs) noexcept
 // Comparison Operators
 bool Vector2::operator==(const Vector2& rhs) const noexcept
 {
-	return (this->x == rhs.x && this->y == rhs.y);
+	return std::fabsf(x - rhs.x) < std::numeric_limits<float>::epsilon()
+		&& std::fabsf(y - rhs.y) < std::numeric_limits<float>::epsilon();
 }
 
 bool Vector2::operator!=(const Vector2& rhs) const noexcept
