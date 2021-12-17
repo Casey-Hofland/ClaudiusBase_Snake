@@ -52,6 +52,20 @@ void Player::Extend()
 	}
 }
 
+void Player::Update(const Game& game)
+{
+	UpdateInput();
+
+	headPosition = headPosition + movement * movement_speed * game.time.GetDeltaTime();
+}
+
+void Player::Render(const Game& game) const noexcept
+{
+
+
+	SDL_RenderFillRect(game.renderer, &rect);  // <- If you want to draw a "filled" rectangle. 
+}
+
 void Player::UpdateInput()
 {
 	if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_LEFT))
