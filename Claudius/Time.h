@@ -10,7 +10,7 @@ class Time
 {
     unsigned int m_frameCount;
 
-    float m_timeScale;
+    float m_timeScale{ 1.0f };
 
     float m_time;
     float m_deltaTime;

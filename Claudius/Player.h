@@ -16,6 +16,7 @@ class Player
 {
 private:
 	void UpdateInput();
+	int size{};
 
 public:
 	Player(Vector2 position, int size);

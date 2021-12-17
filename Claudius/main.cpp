@@ -93,7 +93,6 @@ int main()
 		}
 		SDL_RenderPresent(renderer);
 		renderManager.Clear();
-		SDL_Delay(1000 / 20); //<- "Framerate".
 	}
 
 	SDL_DestroyRenderer(renderer);

@@ -4,6 +4,7 @@
 
 Player::Player(Vector2 position, int size)
 	: headPosition{ position }
+	, size{ size }
 	, headRect{ static_cast<int>(position.x), static_cast<int>(position.y), size, size }
 {
 }
@@ -21,52 +22,79 @@ void Player::Update(float deltaTime)
 {
 	UpdateInput();
 
-	if (!bodyPositions.empty())
+	if (headRect.x % size == 0
+		&& headRect.y % size == 0)
 	{
-		bodyPositions.pop_back();
-		bodyPositions.push_front(headPosition);
+		if (!bodyPositions.empty())
+		{
+			const Vector2 newBodyPos = Vector2{ static_cast<float>(headRect.x), static_cast<float>(headRect.y) };
+
+			if (bodyPositions.front() != newBodyPos)
+			{
+				bodyPositions.pop_back();
+				bodyPositions.push_front(newBodyPos);
+			}
+		}
 	}
 
-	headPosition = headPosition + movement;
-	//headPosition = headPosition + movement * deltaTime;
+	headPosition += movement * movement_speed * deltaTime;
+	
 	headRect.x = headPosition.x;
 	headRect.y = headPosition.y;
 }
 
 void Player::Extend()
 {
-	if (bodyPositions.empty())
-	{
-		bodyPositions.push_back(headPosition - movement);
-	}
-	else if (bodyPositions.size() == 1)
-	{
-		const auto dir = bodyPositions.back() - headPosition;
-		bodyPositions.push_back(bodyPositions.back() + dir);
-	}
-	else
-	{
-		const auto dir = bodyPositions.back() - bodyPositions.at(bodyPositions.size() - 1);
-		bodyPositions.push_back(bodyPositions.back() + dir);
-	}
+	bodyPositions.push_back(-Vector2::one() * size);
 }
 
 void Player::UpdateInput()
 {
+	Vector2 newMovement = Vector2::zero();
+
 	if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_LEFT))
 	{
-		movement = { -movement_speed, 0.0f };
+		newMovement = Vector2::left();
 	}
 	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_RIGHT))
 	{
-		movement = { movement_speed, 0.0f };
+		newMovement = Vector2::right();
 	}
 	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_UP))
 	{
-		movement = { 0.0f, -movement_speed };
+		newMovement = Vector2::down();
 	}
 	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_DOWN))
 	{
-		movement = { 0.0f, movement_speed };
+		newMovement = Vector2::up();
 	}
+
+	// Ignore movement if it doesn't change or would go in the opposite direction.
+	if (newMovement == Vector2::zero()
+		|| newMovement == movement
+		|| newMovement == -movement)
+	{
+		return;
+	}
+
+	// Apply movement and make sure the head stays on the grid in such a way that input calculated the next frame would move the head in a different direction.
+	movement = newMovement;
+
+	headPosition /= size;
+
+	if (!bodyPositions.empty())
+	{
+		const Vector2 newBodyPos = Vector2{ std::roundf(headPosition.x) * size, std::roundf(headPosition.y) * size };
+
+		if (bodyPositions.front() != newBodyPos)
+		{
+			bodyPositions.pop_back();
+			bodyPositions.push_front(newBodyPos);
+		}
+	}
+
+	headPosition.x = std::roundf(headPosition.x);
+	headPosition.y = std::roundf(headPosition.y);
+	headPosition *= size;
+	headPosition += movement * size * 0.5f;
 }
