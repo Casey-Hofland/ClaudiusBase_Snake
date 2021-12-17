@@ -1,10 +1,22 @@
 #pragma once
 
+#include <limits>
+
 struct Vector2
 {
 	// Variables
 	float x {}; 
 	float y {};
+
+	// Predefined Values
+	static constexpr Vector2 zero() noexcept { return { 0.0f, 0.0f }; }
+	static constexpr Vector2 one() noexcept { return { 1.0f, 1.0f }; }
+	static constexpr Vector2 right() noexcept { return { 1.0f, 0.0f }; }
+	static constexpr Vector2 left() noexcept { return -right(); }
+	static constexpr Vector2 up() noexcept { return { 0.0f, 1.0f }; }
+	static constexpr Vector2 down() noexcept { return -up(); }
+	static constexpr Vector2 positiveInfinity() noexcept { return { std::numeric_limits<float>::infinity(), std::numeric_limits<float>::infinity() }; }
+	static constexpr Vector2 negativeInfinity() noexcept { return -positiveInfinity(); }
 
 	// Constructors
 	Vector2() = default;
