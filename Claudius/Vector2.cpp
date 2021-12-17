@@ -1,60 +1,122 @@
 #include "Vector2.h"
 #include <cmath>
 
-Vector2::Vector2() : x(0.0f), y(0.0f)
+// Constructors
+constexpr Vector2::Vector2(float x, float y) noexcept
+	: x(x), y(y) 
 {
 }
 
-Vector2::Vector2(const Vector2& rhs) : x(rhs.x), y(rhs.y) 
+// Addition Assignment
+Vector2& Vector2::operator+=(const Vector2& rhs) noexcept
 {
+	x += rhs.x;
+	y += rhs.y;
+	return *this;
 }
 
-Vector2::Vector2(const float x, const float y) : x(x), y(y) 
+// Addition
+Vector2 operator+(Vector2 lhs, const Vector2& rhs) noexcept // Passing lhs by value helps optimize chained a+b+c. Otherwise, both parameters may be const references.
 {
+	lhs += rhs; // reuse addition assignment
+	return lhs; // return the result by value (uses move constructor)
 }
 
-Vector2& Vector2::operator=(const Vector2& rhs) 
-{ 
-	x = rhs.x; 
-	y = rhs.y; 
-	return *this; 
-};
-
-Vector2 Vector2::operator+(const Vector2& rhs) const
+// Subtraction Assignment
+Vector2& Vector2::operator-=(const Vector2& rhs) noexcept
 {
-	return Vector2(x + rhs.x, y + rhs.y);
+	x -= rhs.x;
+	y -= rhs.y;
+	return *this;
 }
 
-Vector2 Vector2::operator-(const Vector2& rhs) const
+// Subtraction
+Vector2 operator-(Vector2 lhs, const Vector2& rhs) noexcept // Passing lhs by value helps optimize chained a+b+c. Otherwise, both parameters may be const references.
 {
-	return Vector2(x - rhs.x, y - rhs.y);
+	lhs -= rhs; // reuse subtraction assignment
+	return lhs; // return the result by value (uses move constructor)
 }
 
-Vector2 Vector2::operator*(const Vector2& rhs) const
+// Multiplication Assignment
+Vector2& Vector2::operator*=(const Vector2& rhs) noexcept
 {
-	return Vector2(x * rhs.x, y * rhs.y);
+	x *= rhs.x;
+	y *= rhs.y;
+	return *this;
 }
 
-Vector2 Vector2::operator/(const Vector2& rhs) const
+Vector2& Vector2::operator*=(const float& rhs) noexcept
 {
-	return Vector2(x / rhs.x, y / rhs.y);
+	x *= rhs;
+	y *= rhs;
+	return *this;
 }
 
-Vector2 Vector2::operator*(const float rhs) const
+// Multiplication
+Vector2 operator*(Vector2 lhs, const Vector2& rhs) noexcept // Passing lhs by value helps optimize chained a+b+c. Otherwise, both parameters may be const references.
 {
-	return Vector2(x * rhs, y * rhs);
+	lhs *= rhs; // reuse multiplication assignment
+	return lhs; // return the result by value (uses move constructor)
 }
 
-Vector2 Vector2::operator/(const float rhs) const
+Vector2 operator*(Vector2 lhs, const float& rhs) noexcept
 {
-	return Vector2(x / rhs, y / rhs);
+	lhs *= rhs;
+	return lhs;
 }
 
-bool Vector2::operator==(const Vector2& rhs) const
+Vector2 operator*(const float& lhs, Vector2 rhs) noexcept
+{
+	rhs *= lhs;
+	return rhs;
+}
+
+// Division Assignment
+Vector2& Vector2::operator/=(const Vector2& rhs) noexcept
+{
+	x /= rhs.x;
+	y /= rhs.y;
+	return *this;
+}
+
+Vector2& Vector2::operator/=(const float& rhs) noexcept
+{
+	x /= rhs;
+	y /= rhs;
+	return *this;
+}
+
+// Division
+Vector2 operator/(Vector2 lhs, const Vector2& rhs) noexcept // Passing lhs by value helps optimize chained a+b+c. Otherwise, both parameters may be const references.
+{
+	lhs /= rhs; // reuse division assignment
+	return lhs; // return the result by value (uses move constructor)
+}
+
+Vector2 operator/(Vector2 lhs, const float& rhs) noexcept
+{
+	lhs /= rhs;
+	return lhs;
+}
+
+Vector2 operator/(const float& lhs, Vector2 rhs) noexcept
+{
+	rhs /= lhs;
+	return rhs;
+}
+
+// Comparison Operators
+bool Vector2::operator==(const Vector2& rhs) const noexcept
 {
 	return (this->x == rhs.x && this->y == rhs.y);
 }
 
+bool Vector2::operator!=(const Vector2& rhs) const noexcept
+{
+	return !(*this == rhs);
+}
+
+// User-defined methods
 Vector2 Vector2::perpendicular() const
 {
 	return Vector2(-y, x); // 90 degrees to the right
