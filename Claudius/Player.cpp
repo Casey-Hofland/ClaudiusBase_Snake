@@ -1,7 +1,6 @@
 #include "Player.h"
 #include <cmath>
 #include "RenderManager.h"
-#include <iostream>
 
 Player::Player(Vector2 position, int size)
 	: headPosition{ position }
@@ -50,20 +49,6 @@ void Player::Extend()
 		const auto dir = bodyPositions.back() - bodyPositions.at(bodyPositions.size() - 1);
 		bodyPositions.push_back(bodyPositions.back() + dir);
 	}
-}
-
-void Player::Update(const Game& game)
-{
-	UpdateInput();
-
-	headPosition = headPosition + movement * movement_speed * game.time.GetDeltaTime();
-}
-
-void Player::Render(const Game& game) const noexcept
-{
-
-
-	SDL_RenderFillRect(game.renderer, &rect);  // <- If you want to draw a "filled" rectangle. 
 }
 
 void Player::UpdateInput()

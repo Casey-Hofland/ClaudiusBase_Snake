@@ -9,12 +9,12 @@
 class Time
 {
     unsigned int m_frameCount;
-    
+
     float m_timeScale;
-    
+
     float m_time;
     float m_deltaTime;
-    
+
     float m_unscaledTime;
     float m_unscaledDeltaTime;
 
@@ -23,7 +23,7 @@ class Time
 
 public:
     void Update() noexcept;
-    
+
     unsigned int GetFrameCount() const noexcept;
 
     float GetTimeScale() const noexcept;
@@ -31,8 +31,7 @@ public:
 
     float GetTime() const noexcept;
     float GetDeltaTime() const noexcept;
-    
+
     float GetUnscaledTime() const noexcept;
     float GetUnscaledDeltaTime() const noexcept;
 };
-

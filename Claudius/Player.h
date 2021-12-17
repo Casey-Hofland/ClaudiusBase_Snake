@@ -3,8 +3,6 @@
 #include <queue>
 #include "Vector2.h"
 #include "Input.h"
-#include "IUpdateable.h"
-#include "IRenderable.h"
 
 #include <CodeAnalysis/Warnings.h>
 #pragma warning(push)
@@ -14,7 +12,7 @@
 
 struct RenderManager;
 
-class Player : public IUpdateable, public IRenderable
+class Player
 {
 private:
 	void UpdateInput();
@@ -32,9 +30,6 @@ public:
 	void Render(RenderManager& renderManager);				// A reference or pointer doesn't need to be #include, just a forward declare.
 	void Update(float deltaTime);
 	void Extend();
-
-	virtual void Update(const Game& game);
-	virtual void Render(const Game& game) const noexcept;
 
 	float movement_speed{ 10.0f };
 

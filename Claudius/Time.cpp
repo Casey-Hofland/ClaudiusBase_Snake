@@ -48,4 +48,3 @@ float Time::GetUnscaledDeltaTime() const noexcept
 {
 	return m_unscaledDeltaTime;
 }
-

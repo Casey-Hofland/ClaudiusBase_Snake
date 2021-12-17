@@ -36,8 +36,6 @@ int main()
 	ResourceManager resourceManager(resourceImpl);
 	Game game{};
 
-	Player playerOne{ Vector2{300.0f, 300.0f}, 10 };
-
 	constexpr int width = 1250;
 	constexpr int height = 700;
 	const std::string title = "Snake";
@@ -49,10 +47,13 @@ int main()
 	SDL_SetWindowTitle(window, title.c_str());
 	SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 	
+	Time time{};
 	while (running)
 	{
+		time.Update();
+
 		// Update the game
-		game.Update(0.0f);
+		game.Update(time.GetDeltaTime());
 
 		// Render the game
 		game.Render(renderManager);
