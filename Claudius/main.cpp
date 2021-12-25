@@ -50,6 +50,9 @@ int main()
 	Time time{};
 	while (running)
 	{
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+		SDL_RenderClear(renderer);
+
 		time.Update();
 
 		// Update the game
@@ -58,8 +61,6 @@ int main()
 		// Render the game
 		game.Render(renderManager);
 
-		SDL_SetRenderDrawColor(renderer,0,0,0,0);
-		SDL_RenderClear(renderer);
 		for (auto &&entry : renderManager.spriteEntries)
 		{
 			if (entry.sprite.image != nullptr)
