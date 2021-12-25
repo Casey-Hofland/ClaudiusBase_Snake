@@ -59,50 +59,66 @@ void Snake::Shrink() noexcept
     m_bodyParts.pop_back();
 }
 
+void Snake::SnapPositionToSize() noexcept
+{
+	m_position /= m_size;
+	m_position.x = std::roundf(m_position.x);
+	m_position.y = std::roundf(m_position.y);
+	m_position *= m_size;
+}
+
+// Change the snake's direction. Fails if the direction would be equal to that of the previous direction or inverse of that.
+void Snake::ChangeDirection(Vector2 direction) noexcept
+{
+	direction.normalize();
+
+	if (direction == this->m_direction
+		|| direction == -this->m_direction)
+	{
+		return;
+	}
+
+	this->m_direction = direction;
+
+	// Snap the head to size.
+	SnapPositionToSize();
+	UpdateHead();
+
+	// If the snapping caused the head and the body to detach, update the body.
+	const auto head{ Head() };
+	const auto secondBodyPart{ BodyPartAt(1) };
+	if (secondBodyPart.x != head.x
+		|| secondBodyPart.y != head.y)
+	{
+		m_bodyParts.pop_back();
+		m_bodyParts.push_front(head);
+	}
+
+	// Move the position by an amount that will ensure that the snake can never collide with itself when performing a U-turn.
+	m_position += m_size * 0.5f * m_direction;
+}
 #pragma endregion
 
 #pragma region Private update functions
 void Snake::ProcessInput() noexcept
 {
-	Vector2 newDirection{ Vector2::zero() };
+	// Change the direction based on input.
 	if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_LEFT))
 	{
-		newDirection = Vector2::left();
+		ChangeDirection(Vector2::left());
 	}
 	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_RIGHT))
 	{
-		newDirection = Vector2::right();
+		ChangeDirection(Vector2::right());
 	}
 	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_UP))
 	{
-		newDirection = Vector2::down();
+		ChangeDirection(Vector2::down());
 	}
 	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_DOWN))
 	{
-		newDirection = Vector2::up();
+		ChangeDirection(Vector2::up());
 	}
-
-	// Change the snake's direction. Fails if the direction wouldn't change or if it would completely turn around.
-	if (newDirection == Vector2::zero()
-		|| newDirection == this->m_direction
-		|| newDirection == -this->m_direction)
-	{
-		return;
-	}
-
-	this->m_direction = newDirection;
-
-	// Snap the head to the grid and updaate the head and body.
-	m_position /= m_size;
-	m_position.x = std::roundf(m_position.x);
-	m_position.y = std::roundf(m_position.y);
-	m_position *= m_size;
-
-	UpdateHead();
-	UpdateBody();
-
-	// Move the head by an amount that will ensure that the snake can never collide with itself when performing a U-turn.
-	m_position += m_size * 0.5f * m_direction;
 }
 
 // Update the head: round the floating position.

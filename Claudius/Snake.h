@@ -45,6 +45,8 @@ public:
 	void Render(SDL_Renderer* renderer) const noexcept;
 	void Grow();
 	void Shrink() noexcept;
+	void SnapPositionToSize() noexcept;
+	void ChangeDirection(Vector2 direction) noexcept;
 
 	// Getters & Setters
 	const SDL_Rect& Head() const noexcept;
