@@ -31,7 +31,7 @@ int main()
 	}
 	bool running = true;
 	
-	RenderManager renderManager;
+	RenderManager renderManager{ renderer };
 	ResourceImpl resourceImpl(renderer);
 	ResourceManager resourceManager(resourceImpl);
 	Game game{};

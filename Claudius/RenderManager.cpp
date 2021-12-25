@@ -1,5 +1,10 @@
 #include "RenderManager.h"
 
+RenderManager::RenderManager(SDL_Renderer* renderer) noexcept
+	: renderer{ renderer }
+{
+}
+
 void RenderManager::Render(const Sprite& sprite, const Vector2& position)
 {
 	spriteEntries.push_back({ sprite, position });

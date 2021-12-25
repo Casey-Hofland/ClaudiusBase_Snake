@@ -13,6 +13,9 @@ struct Sprite;
 
 struct RenderManager
 {
+public:
+	SDL_Renderer* renderer;
+
 	struct SpriteEntry
 	{
 		const Sprite& sprite;
@@ -26,6 +29,7 @@ struct RenderManager
 		const Vector2& position;
 	};
 
+	RenderManager(SDL_Renderer* renderer) noexcept;
 
 	void Render(const Sprite& sprite, const Vector2& position);
 	void Render(const SDL_Rect& rect, const SDL_Color& color, const Vector2& position);
