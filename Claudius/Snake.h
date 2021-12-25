@@ -45,5 +45,7 @@ public:
 	const SDL_Rect& Tail() const noexcept;
 	const SDL_Rect& BodyPartAt(size_t index) const;
 	size_t BodyPartsSize() const noexcept;
+	int GetSize() const noexcept;
+	Vector2 GetDirection() const noexcept;
 	Vector2 GetPosition() const noexcept;
 };

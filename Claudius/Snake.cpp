@@ -185,6 +185,16 @@ size_t Snake::BodyPartsSize() const noexcept
     return m_bodyParts.size();
 }
 
+int Snake::GetSize() const noexcept
+{
+	return m_size;
+}
+
+Vector2 Snake::GetDirection() const noexcept
+{
+    return m_direction;
+}
+
 Vector2 Snake::GetPosition() const noexcept
 {
     return m_position;
