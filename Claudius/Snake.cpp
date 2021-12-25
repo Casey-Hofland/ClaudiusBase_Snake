@@ -256,13 +256,42 @@ int Snake::GetSize() const noexcept
 	return m_size;
 }
 
+void Snake::SetSize(int size) noexcept
+{
+	this->m_size = size;
+
+	for (auto& bodyPart : m_bodyParts)
+	{
+		bodyPart.w = bodyPart.h = size;
+	}
+
+	SnapPositionToSize();
+	UpdateHead();
+	UpdateBody();
+}
+
 Vector2 Snake::GetDirection() const noexcept
 {
     return m_direction;
 }
 
+void Snake::SetDirection(Vector2 direction) noexcept
+{
+	this->m_direction = direction;
+	this->m_direction.normalize();
+}
+
 Vector2 Snake::GetPosition() const noexcept
 {
     return m_position;
+}
+
+void Snake::SetPosition(Vector2 position) noexcept
+{
+	this->m_position = position;
+
+	SnapPositionToSize();
+	UpdateHead();
+	UpdateBody();
 }
 #pragma endregion

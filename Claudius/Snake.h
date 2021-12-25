@@ -54,6 +54,9 @@ public:
 	const SDL_Rect& BodyPartAt(size_t index) const;
 	size_t BodyPartsSize() const noexcept;
 	int GetSize() const noexcept;
+	void SetSize(int size) noexcept;
 	Vector2 GetDirection() const noexcept;
+	void SetDirection(Vector2 direction) noexcept;
 	Vector2 GetPosition() const noexcept;
+	void SetPosition(Vector2 position) noexcept;
 };
