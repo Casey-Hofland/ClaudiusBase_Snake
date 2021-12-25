@@ -21,6 +21,7 @@ private:
 	void ProcessInput() noexcept;	// Noexcept is implicit: ignore compiler warnings on BodyPartAt(1), BodyPartAt(BodyPartsSize() - 2), and bodyParts.push_front() right after bodyParts.pop_back().
 	void UpdateHead() noexcept;		// See above.
 	void UpdateBody() noexcept;		// See above.
+	void UpdateTail() noexcept;		// See above.
 
 	SDL_Rect& m_head() noexcept;
 	SDL_Rect& m_tail() noexcept;

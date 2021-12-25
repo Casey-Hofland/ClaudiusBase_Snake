@@ -26,6 +26,7 @@ void Snake::Update(float deltaTime) noexcept
 
 	UpdateHead();
 	UpdateBody();
+	UpdateTail();
 }
 
 void Snake::Render(SDL_Renderer* renderer) const noexcept
@@ -150,6 +151,48 @@ void Snake::UpdateBody() noexcept
 	}
 }
 
+// Update the tail: take the distance of the head to the second body part, invert it, and apply it to the distance of the tail to the second to last body part.
+void Snake::UpdateTail() noexcept
+{
+	auto& tailRef = m_tail();
+
+	// If the head is the second to last body part, set the tail position equal to that of the head.
+	const SDL_Rect head{ Head() };
+	const auto secondToLastBodyPartIndex = BodyPartsSize() - 2;
+	if (secondToLastBodyPartIndex == 0)
+	{
+		tailRef.x = head.x;
+		tailRef.y = head.y;
+		return;
+	}
+
+	// Calculate the tail distance based on how far away the head is from the second body part.
+	const SDL_Rect secondBodyPart = m_bodyPartAt(1);
+	const auto tailDistance = m_size - std::abs(secondBodyPart.x - head.x) - std::abs(secondBodyPart.y - head.y);
+
+	const auto secondToLastBodyPart = BodyPartAt(secondToLastBodyPartIndex);
+
+	if (tailRef.x != secondToLastBodyPart.x)
+	{
+		// Get the normalized direction in which the tail is moving away from the second to last body part (will be either 1 or -1).
+		auto offsetDirection = secondToLastBodyPart.x - tailRef.x;
+		offsetDirection /= std::abs(offsetDirection);
+
+		// Move the tail away from the body part.
+		const auto offset = offsetDirection * tailDistance;
+		tailRef.x = (secondToLastBodyPart.x - offset);
+	}
+
+	// Same as above but for y.
+	if (tailRef.y != secondToLastBodyPart.y)
+	{
+		auto offsetDirection = secondToLastBodyPart.y - tailRef.y;
+		offsetDirection /= std::abs(offsetDirection);
+
+		const auto offset = offsetDirection * tailDistance;
+		tailRef.y = (secondToLastBodyPart.y - offset);
+	}
+}
 SDL_Rect& Snake::m_head() noexcept
 {
 	return m_bodyParts.front();
