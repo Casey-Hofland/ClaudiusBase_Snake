@@ -24,6 +24,7 @@ public:
 	std::deque<Vector2> bodyPositions{};
 
 	Vector2 headPosition{};
+	Vector2 tailPosition{};
 
 	SDL_Color headColor{ 0, SDL_MAX_UINT8, 0, SDL_MAX_UINT8 };
 	SDL_Color bodyColor{ SDL_MAX_UINT8 , 0, 0, SDL_MAX_UINT8 };

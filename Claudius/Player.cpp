@@ -6,6 +6,7 @@ Player::Player(Vector2 position, int size)
 	: headPosition{ position }
 	, size{ size }
 	, headRect{ static_cast<int>(position.x), static_cast<int>(position.y), size, size }
+	, tailPosition{ -size, -size }
 {
 }
 
@@ -15,12 +16,24 @@ void Player::Render(RenderManager& renderManager)
 	{
 		renderManager.Render(headRect, bodyColor, bodyPosition);
 	}
+	renderManager.Render(headRect, bodyColor, tailPosition);
+
 	renderManager.Render(headRect, headColor, headPosition);
 }
 
 void Player::Update(float deltaTime)
 {
 	UpdateInput();
+
+	if (!bodyPositions.empty())
+	{
+		const auto tailDistance = size - (headPosition - bodyPositions.front()).length();
+
+		auto direction = bodyPositions.back() - tailPosition;
+		direction.normalize();
+
+		tailPosition = bodyPositions.back() - direction * tailDistance;
+	}
 
 	if (headRect.x % size == 0
 		&& headRect.y % size == 0)
@@ -45,6 +58,11 @@ void Player::Update(float deltaTime)
 
 void Player::Extend()
 {
+	if (bodyPositions.empty())
+	{
+		tailPosition = headPosition - movement * size;
+	}
+
 	bodyPositions.push_back(-Vector2::one() * size);
 }
 
