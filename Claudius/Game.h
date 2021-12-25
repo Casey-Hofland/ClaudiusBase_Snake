@@ -9,13 +9,13 @@
 #include <string>
 #include <vector>
 #include "Apple.h"
-#include "Player.h"
+#include "Snake.h"
 #include "Time.h"
 
 class Game
 {
 private:
-	Player playerOne{ Vector2{300.0f, 300.0f}, 10 };
+	Snake snake{ Vector2{300.0f, 300.0f}, 10, 10 };
 	Apple apple{ 10, 10 };
 
 public:

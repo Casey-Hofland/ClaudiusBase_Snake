@@ -12,7 +12,7 @@
 
 struct RenderManager;
 
-class Player
+class [[deprecated("Player is outdated. Use class Snake instead.")]] Player
 {
 private:
 	void UpdateInput();

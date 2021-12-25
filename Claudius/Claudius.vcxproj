@@ -169,6 +169,7 @@
     <ClCompile Include="RenderManager.cpp" />
     <ClCompile Include="ResourceImpl.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
+    <ClCompile Include="Snake.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Vector2.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="RenderManager.h" />
     <ClInclude Include="ResourceImpl.h" />
     <ClInclude Include="ResourceManager.h" />
+    <ClInclude Include="Snake.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Vector2.h" />

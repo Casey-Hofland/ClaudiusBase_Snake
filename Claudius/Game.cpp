@@ -2,38 +2,39 @@
 
 #include "Game.h"
 #include "RenderManager.h"
-#include <iostream>
 
 void Game::Update(float deltaTime)
 {
-	playerOne.Update(deltaTime);
+	snake.Update(deltaTime);
 
-	// Player colliding on theirself.
-	for (int i = 0; i < playerOne.player_score; i++)
+	// Snake colliding on themselves.
+	const auto& head = snake.Head();
+	const auto& tail = snake.Tail();
+	for (size_t i = 2; i < snake.BodyPartsSize(); i++)
 	{
-		if (playerOne.headPosition == playerOne.bodyPositions[i])
+		const auto& bodyPart = snake.BodyPartAt(i);
+		if (SDL_HasIntersection(&head, &bodyPart)
+			&& (bodyPart.x != tail.x || bodyPart.y != tail.y))
 		{
-			playerOne = { Vector2{300.0f, 300.0f}, 10 };
+			snake = { Vector2{300.0f, 300.0f}, 10, 10 };
+			break;
 		}
 	}
 
-	// Player going out of X bounds.
-	if (playerOne.headPosition.x > width || playerOne.headPosition.x < 0)
+	// Snake going out of bounds.
+	if (snake.GetPosition().x > width 
+		|| snake.GetPosition().x < 0
+		|| snake.GetPosition().y > height
+		|| snake.GetPosition().y < 0)
 	{
-		playerOne = { Vector2{300.0f, 300.0f}, 10 };
+		snake = { Vector2{300.0f, 300.0f}, 10, 10 };
 	}
 
-	// Player going out of Y bounds.
-	if (playerOne.headPosition.y > height || playerOne.headPosition.y < 0)
+	// Snake collide on apple
+	if (SDL_HasIntersection(&snake.Head(), &apple.rect))
 	{
-		playerOne = { Vector2{300.0f, 300.0f}, 10 };
-	}
-
-	// Player collide on apple.
-	if (SDL_HasIntersection(&playerOne.headRect, &apple.rect))
-	{
-		playerOne.player_score++;
-		playerOne.Extend();
+		snake.score++;
+		snake.Grow();
 
 		apple.position = { (rand() % 125) * 10.0f, (rand() % 70) * 10.0f };
 		apple.rect.x = apple.position.x;
@@ -43,7 +44,7 @@ void Game::Update(float deltaTime)
 
 void Game::Render(RenderManager& renderManager)
 {
-	playerOne.Render(renderManager);
+	snake.Render(renderManager.renderer);
 	apple.Render(renderManager);
 }
 
