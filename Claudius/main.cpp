@@ -94,6 +94,8 @@ int main()
 		}
 		SDL_RenderPresent(renderer);
 		renderManager.Clear();
+
+		//SDL_Delay(1000 / 4);
 	}
 
 	SDL_DestroyRenderer(renderer);

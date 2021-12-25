@@ -108,19 +108,45 @@ void Snake::UpdateHead() noexcept
 	head.y = std::roundf(m_position.y);
 }
 
+// Update the body: for every factor of 'size' that the head is ahead of the body, take the last body part and move it towards the head.
 void Snake::UpdateBody() noexcept
 {
-	const auto head{ Head() };
-	if (head.x % m_size == 0
-		&& head.y % m_size == 0)
+	const SDL_Rect head{ Head() };
+	const SDL_Rect secondBodyPart = m_bodyPartAt(1);
+
+	// Calculate the number of body parts we need to update in order for our snake to stay in one piece.
+	const size_t headDistance = static_cast<size_t>(std::abs(secondBodyPart.x - head.x)) + std::abs(secondBodyPart.y - head.y);
+	size_t bodyPartIndex = std::min(headDistance / m_size, BodyPartsSize() - 1);
+
+	for (; bodyPartIndex > 0; bodyPartIndex--)
 	{
-		const auto secondBodyPart{ BodyPartAt(1) };
-		if (secondBodyPart.x != head.x
-			|| secondBodyPart.y != head.y)
+		// Take a reference of the head. We are calling it "nextBodyPartRef" because we'll be adding the head anew later on. Taking a reference of the head like this is free optimization.
+		auto& nextBodyPartRef = m_head();
+
+		// Move the next body part behind the head based on the snakes movement direction.
+		nextBodyPartRef.x = head.x - m_direction.x * m_size * (bodyPartIndex - 1);
+		nextBodyPartRef.y = head.y - m_direction.y * m_size * (bodyPartIndex - 1);
+
+		// In the case where the head is not perfectly on the grid and our direction is a factor of minus one or less, solve for incorrect snapping.
+		if (m_direction.x <= -1.0f && head.x % m_size != 0)
 		{
-			m_bodyParts.pop_back();
-			m_bodyParts.push_front(head);
+			nextBodyPartRef.x += m_size;
 		}
+		if (m_direction.y <= -1.0f && head.y % m_size != 0)
+		{
+			nextBodyPartRef.y += m_size;
+		}
+
+		// Snap the body part to size (done implicitely by int division).
+		nextBodyPartRef.x /= m_size;
+		nextBodyPartRef.x *= m_size;
+
+		nextBodyPartRef.y /= m_size;
+		nextBodyPartRef.y *= m_size;
+
+		// Pop the last body part and push the head to the front.
+		m_bodyParts.pop_back();
+		m_bodyParts.push_front(head);
 	}
 }
 
@@ -147,6 +173,11 @@ const SDL_Rect& Snake::Tail() const noexcept
 const SDL_Rect& Snake::BodyPartAt(size_t index) const
 {
     return m_bodyParts.at(index);
+}
+
+SDL_Rect& Snake::m_bodyPartAt(size_t index)
+{
+	return m_bodyParts.at(index);
 }
 
 size_t Snake::BodyPartsSize() const noexcept

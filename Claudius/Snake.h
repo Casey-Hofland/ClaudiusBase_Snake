@@ -24,6 +24,7 @@ private:
 
 	SDL_Rect& m_head() noexcept;
 	SDL_Rect& m_tail() noexcept;
+	SDL_Rect& m_bodyPartAt(size_t index);
 
 public:
 	static constexpr int minimumBodyParts{ 2 };
