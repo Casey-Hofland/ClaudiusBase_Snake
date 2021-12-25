@@ -18,6 +18,7 @@ Snake::Snake(Vector2 position, int size, int bodyParts)
 	}
 }
 
+#pragma region Public update functions
 void Snake::Update(float deltaTime) noexcept
 {
     ProcessInput();
@@ -58,6 +59,9 @@ void Snake::Shrink() noexcept
     m_bodyParts.pop_back();
 }
 
+#pragma endregion
+
+#pragma region Private update functions
 void Snake::ProcessInput() noexcept
 {
 	Vector2 newDirection{ Vector2::zero() };
@@ -193,6 +197,9 @@ void Snake::UpdateTail() noexcept
 		tailRef.y = (secondToLastBodyPart.y - offset);
 	}
 }
+#pragma endregion
+
+#pragma region Getters & Setters
 SDL_Rect& Snake::m_head() noexcept
 {
 	return m_bodyParts.front();
@@ -242,3 +249,4 @@ Vector2 Snake::GetPosition() const noexcept
 {
     return m_position;
 }
+#pragma endregion
