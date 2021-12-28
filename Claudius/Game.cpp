@@ -85,10 +85,10 @@ void Game::Render() const noexcept
 
 std::tuple<unsigned int, unsigned int> Game::GetRandomGridIndex() const noexcept
 {
-	const unsigned int x = std::rand() % GetColumns();
-	const unsigned int y = std::rand() % GetRows();
+	const unsigned int column = std::rand() % GetColumns();
+	const unsigned int row = std::rand() % GetRows();
 
-	return std::make_tuple(x, y);
+	return std::make_tuple(column, row);
 }
 
 std::tuple<unsigned int, unsigned int> Game::GetRandomGridPosition() const noexcept
