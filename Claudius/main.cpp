@@ -29,7 +29,6 @@ int main()
 		const char* error = SDL_GetError();
 		return 0;
 	}
-	bool running = true;
 	
 	RenderManager renderManager{ renderer };
 	ResourceImpl resourceImpl(renderer);
@@ -48,7 +47,7 @@ int main()
 	SDL_SetWindowPosition(window, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 	
 	Time time{};
-	while (running)
+	while (true)
 	{
 		time.Update();
 
