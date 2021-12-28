@@ -19,8 +19,8 @@ private:
 	unsigned int columns{};
 	unsigned int rows{};
 
-	Snake snake{ Vector2{300.0f, 300.0f}, 30, 10 };
-	Apple apple{ 120, 300, 30 };
+	Snake snake{ -Vector2::one(), 0, 0 };
+	Apple apple{ -1, -1, 0 };
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
@@ -37,6 +37,8 @@ public:
 	void Update(float deltaTime);
 	void Render() const noexcept;
 
+	std::tuple<unsigned int, unsigned int> GetRandomUniqueGridIndex() const;
+	std::tuple<unsigned int, unsigned int> GetRandomUniqueGridPosition() const;
 	std::tuple<unsigned int, unsigned int> GetRandomGridIndex() const noexcept;
 	std::tuple<unsigned int, unsigned int> GetRandomGridPosition() const noexcept;
 
