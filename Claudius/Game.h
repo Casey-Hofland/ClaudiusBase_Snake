@@ -15,8 +15,8 @@
 class Game
 {
 private:
-	Snake snake{ Vector2{300.0f, 300.0f}, 10, 10 };
-	Apple apple{ 120, 300, 10 };
+	Snake snake{ Vector2{300.0f, 300.0f}, 30, 10 };
+	Apple apple{ 120, 300, 30 };
 
 public:
 	int width{ 1250 };

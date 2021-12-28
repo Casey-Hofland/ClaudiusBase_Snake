@@ -33,7 +33,7 @@ public:
 	static constexpr int minimumBodyParts{ 2 };
 
 	int score{};
-	float speed{ 10.0f };
+	float speed{ 40.0f };
 	SDL_Color bodyColor{ SDL_MAX_UINT8 , 0, 0, SDL_MAX_UINT8 };
 	SDL_Color headColor{ 0, SDL_MAX_UINT8, 0, SDL_MAX_UINT8 };
 

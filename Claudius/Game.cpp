@@ -15,7 +15,7 @@ void Game::Update(float deltaTime)
 		if (SDL_HasIntersection(&head, &bodyPart)
 			&& (bodyPart.x != tail.x || bodyPart.y != tail.y))
 		{
-			snake = { Vector2{300.0f, 300.0f}, 10, 10 };
+			snake = { Vector2{300.0f, 300.0f}, 30, 10 };
 			break;
 		}
 	}
@@ -26,7 +26,7 @@ void Game::Update(float deltaTime)
 		|| snake.GetPosition().y > height
 		|| snake.GetPosition().y < 0)
 	{
-		snake = { Vector2{300.0f, 300.0f}, 10, 10 };
+		snake = { Vector2{300.0f, 300.0f}, 30, 10 };
 	}
 
 	// Snake collide on apple
