@@ -52,9 +52,9 @@ void Game::Update(float deltaTime)
 	}
 
 	// Snake going out of bounds.
-	if (snake.GetPosition().x > GetWidth()
+	if (snake.GetPosition().x + snake.GetSize() > GetWidth()
 		|| snake.GetPosition().x < 0
-		|| snake.GetPosition().y > GetHeight()
+		|| snake.GetPosition().y + snake.GetSize() > GetHeight()
 		|| snake.GetPosition().y < 0)
 	{
 		snake = { Vector2{300.0f, 300.0f}, 30, 10 };
