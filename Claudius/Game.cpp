@@ -1,7 +1,7 @@
 #include "Game.h"
 #include <stdexcept>
 
-Game::Game(int gridSize, int columns, int rows)
+Game::Game(unsigned int gridSize, unsigned int columns, unsigned int rows)
 	: gridSize{ gridSize }
 	, columns{ columns }
 	, rows{ rows }
@@ -79,12 +79,45 @@ void Game::Render() const noexcept
 	SDL_RenderPresent(renderer);
 }
 
-int Game::GetWidth() const noexcept
+unsigned int Game::GetGridSize() const noexcept
 {
-	return gridSize * columns;
+	return gridSize;
 }
 
-int Game::GetHeight() const noexcept
+void Game::SetGridSize(unsigned int gridSize) noexcept
 {
-	return gridSize * rows;
+	this->gridSize = gridSize;
+	snake.SetSize(gridSize);
+	apple.rect.w = gridSize;
+	apple.rect.h = gridSize;
+}
+
+unsigned int Game::GetColumns() const noexcept
+{
+	return columns;
+}
+
+void Game::SetColumns(unsigned int columns) noexcept
+{
+	this->columns = columns;
+}
+
+unsigned int Game::GetRows() const noexcept
+{
+	return rows;
+}
+
+void Game::SetRows(unsigned int rows) noexcept
+{
+	this->rows = rows;
+}
+
+unsigned int Game::GetWidth() const noexcept
+{
+	return GetGridSize() * GetColumns();
+}
+
+unsigned int Game::GetHeight() const noexcept
+{
+	return GetGridSize() * GetRows();
 }

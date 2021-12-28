@@ -15,9 +15,9 @@
 class Game
 {
 private:
-	int gridSize{};
-	int columns{};
-	int rows{};
+	unsigned int gridSize{};
+	unsigned int columns{};
+	unsigned int rows{};
 
 	Snake snake{ Vector2{300.0f, 300.0f}, 30, 10 };
 	Apple apple{ 120, 300, 30 };
@@ -26,7 +26,7 @@ private:
 	SDL_Renderer* renderer;
 
 public:
-	Game(int gridSize, int columns, int rows);
+	Game(unsigned int gridSize, unsigned int columns, unsigned int rows);
 	virtual ~Game() noexcept;
 
 	Game(const Game&) = default;
@@ -37,6 +37,13 @@ public:
 	void Update(float deltaTime);
 	void Render() const noexcept;
 
-	int GetWidth() const noexcept;
-	int GetHeight() const noexcept;
+	unsigned int GetGridSize() const noexcept;
+	void SetGridSize(unsigned int gridSize) noexcept;
+	unsigned int GetColumns() const noexcept;
+	void SetColumns(unsigned int columns) noexcept;
+	unsigned int GetRows() const noexcept;
+	void SetRows(unsigned int rows) noexcept;
+
+	unsigned int GetWidth() const noexcept;
+	unsigned int GetHeight() const noexcept;
 };
