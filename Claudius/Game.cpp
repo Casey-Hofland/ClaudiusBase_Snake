@@ -1,5 +1,3 @@
-// 2019-12-05 Teemu Laiho
-
 #include "Game.h"
 
 void Game::Update(float deltaTime)
