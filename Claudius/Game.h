@@ -37,6 +37,9 @@ public:
 	void Update(float deltaTime);
 	void Render() const noexcept;
 
+	std::tuple<unsigned int, unsigned int> GetRandomGridIndex() const noexcept;
+	std::tuple<unsigned int, unsigned int> GetRandomGridPosition() const noexcept;
+
 	unsigned int GetGridSize() const noexcept;
 	void SetGridSize(unsigned int gridSize) noexcept;
 	unsigned int GetColumns() const noexcept;

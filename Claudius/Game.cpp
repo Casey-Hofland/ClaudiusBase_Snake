@@ -1,5 +1,6 @@
 #include "Game.h"
 #include <stdexcept>
+#include <ctime>
 
 Game::Game(unsigned int gridSize, unsigned int columns, unsigned int rows)
 	: gridSize{ gridSize }
@@ -21,6 +22,8 @@ Game::Game(unsigned int gridSize, unsigned int columns, unsigned int rows)
 	{
 		throw std::invalid_argument("Could not create renderer: " + std::string(SDL_GetError()) + ".\n");
 	}
+
+	std::srand(std::time(nullptr));
 }
 
 Game::~Game() noexcept
@@ -63,8 +66,9 @@ void Game::Update(float deltaTime)
 		snake.score++;
 		snake.Grow();
 
-		apple.rect.x = (rand() % (GetWidth() / apple.rect.w)) * apple.rect.w;
-		apple.rect.y = (rand() % (GetHeight() / apple.rect.h)) * apple.rect.h;
+		auto [x, y] = GetRandomGridPosition();
+		apple.rect.x = x;
+		apple.rect.y = y;
 	}
 }
 
@@ -77,6 +81,22 @@ void Game::Render() const noexcept
 	apple.Render(renderer);
 
 	SDL_RenderPresent(renderer);
+}
+
+std::tuple<unsigned int, unsigned int> Game::GetRandomGridIndex() const noexcept
+{
+	const unsigned int x = std::rand() % GetColumns();
+	const unsigned int y = std::rand() % GetRows();
+
+	return std::make_tuple(x, y);
+}
+
+std::tuple<unsigned int, unsigned int> Game::GetRandomGridPosition() const noexcept
+{
+	auto [column, row] = GetRandomGridIndex();
+	const unsigned int gridSize = GetGridSize();
+
+	return std::make_tuple(column * gridSize, row * gridSize);
 }
 
 unsigned int Game::GetGridSize() const noexcept
