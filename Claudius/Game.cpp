@@ -94,9 +94,19 @@ std::tuple<unsigned int, unsigned int> Game::GetRandomGridIndex() const noexcept
 std::tuple<unsigned int, unsigned int> Game::GetRandomGridPosition() const noexcept
 {
 	auto [column, row] = GetRandomGridIndex();
-	const unsigned int gridSize = GetGridSize();
+	return GridIndexToPosition(column, row);
+}
 
+std::tuple<unsigned int, unsigned int> Game::GridIndexToPosition(unsigned int column, unsigned int row) const noexcept
+{
+	const unsigned int gridSize = GetGridSize();
 	return std::make_tuple(column * gridSize, row * gridSize);
+}
+
+std::tuple<unsigned int, unsigned int> Game::PositionToGridIndex(unsigned int x, unsigned int y) const noexcept
+{
+	const unsigned int gridSize = GetGridSize();
+	return std::make_tuple(x / gridSize, y / gridSize);
 }
 
 unsigned int Game::GetGridSize() const noexcept
