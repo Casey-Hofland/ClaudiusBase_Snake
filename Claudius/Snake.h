@@ -52,6 +52,7 @@ public:
 	const SDL_Rect& Head() const noexcept;
 	const SDL_Rect& Tail() const noexcept;
 	const SDL_Rect& BodyPartAt(size_t index) const;
+	const std::deque<SDL_Rect>& GetBodyParts() const noexcept;
 	size_t BodyPartsSize() const noexcept;
 	int GetSize() const noexcept;
 	void SetSize(int size) noexcept;

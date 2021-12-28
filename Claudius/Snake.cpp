@@ -261,6 +261,11 @@ SDL_Rect& Snake::m_bodyPartAt(size_t index)
 	return m_bodyParts.at(index);
 }
 
+const std::deque<SDL_Rect>& Snake::GetBodyParts() const noexcept
+{
+	return m_bodyParts;
+}
+
 size_t Snake::BodyPartsSize() const noexcept
 {
     return m_bodyParts.size();

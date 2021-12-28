@@ -43,6 +43,8 @@ public:
 	std::tuple<unsigned int, unsigned int> GridIndexToPosition(unsigned int column, unsigned int row) const noexcept;
 	std::tuple<unsigned int, unsigned int> PositionToGridIndex(unsigned int x, unsigned int y) const noexcept;
 
+	bool GridIndexIsEmpty(unsigned int column, unsigned int row) const noexcept;
+
 	unsigned int GetGridSize() const noexcept;
 	void SetGridSize(unsigned int gridSize) noexcept;
 	unsigned int GetColumns() const noexcept;

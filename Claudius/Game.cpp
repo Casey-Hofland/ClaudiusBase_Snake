@@ -109,6 +109,28 @@ std::tuple<unsigned int, unsigned int> Game::PositionToGridIndex(unsigned int x,
 	return std::make_tuple(x / gridSize, y / gridSize);
 }
 
+bool Game::GridIndexIsEmpty(unsigned int column, unsigned int row) const noexcept
+{
+	auto [x, y] = GridIndexToPosition(column, row);
+
+	for (const auto& bodyPart : snake.GetBodyParts())
+	{
+		if (bodyPart.x == x
+			&& bodyPart.y == y)
+		{
+			return false;
+		}
+	}
+
+	if (apple.rect.x == x
+		&& apple.rect.y == y)
+	{
+		return false;
+	}
+
+	return true;
+}
+
 unsigned int Game::GetGridSize() const noexcept
 {
 	return gridSize;
