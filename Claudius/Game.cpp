@@ -1,7 +1,6 @@
 // 2019-12-05 Teemu Laiho
 
 #include "Game.h"
-#include "RenderManager.h"
 
 void Game::Update(float deltaTime)
 {
@@ -36,15 +35,14 @@ void Game::Update(float deltaTime)
 		snake.score++;
 		snake.Grow();
 
-		apple.position = { (rand() % 125) * 10.0f, (rand() % 70) * 10.0f };
-		apple.rect.x = apple.position.x;
-		apple.rect.y = apple.position.y;
+		apple.rect.x = (rand() % (width / apple.rect.w)) * apple.rect.w;
+		apple.rect.y = (rand() % (height / apple.rect.h)) * apple.rect.h;
 	}
 }
 
-void Game::Render(RenderManager& renderManager)
+void Game::Render(SDL_Renderer* renderer) const noexcept
 {
-	snake.Render(renderManager.renderer);
-	apple.Render(renderManager);
+	snake.Render(renderer);
+	apple.Render(renderer);
 }
 

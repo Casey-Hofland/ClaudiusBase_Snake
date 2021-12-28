@@ -16,12 +16,12 @@ class Game
 {
 private:
 	Snake snake{ Vector2{300.0f, 300.0f}, 10, 10 };
-	Apple apple{ 10, 10 };
+	Apple apple{ 120, 300, 10 };
 
 public:
 	int width{ 1250 };
 	int height{ 700 };
 
 	void Update(float deltaTime);
-	void Render(RenderManager& rendererManager);
+	void Render(SDL_Renderer* renderer) const noexcept;
 };

@@ -1,16 +1,14 @@
 #pragma once
 
-#include <iostream>
 #include "Apple.h"
-#include "RenderManager.h"
 
-Apple::Apple(int width, int height)
-	: position{ 100.0f, 200.0f }
-	, rect{ 100, 200, width, height }
+Apple::Apple(int x, int y, int size) noexcept
+	: rect{ x, y, size, size }
 {
 }
 
-void Apple::Render(RenderManager& renderManager)
+void Apple::Render(SDL_Renderer* renderer) const noexcept
 {
-	renderManager.Render(rect, color, position);
+	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
+	SDL_RenderFillRect(renderer, &rect);
 }
