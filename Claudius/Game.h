@@ -15,13 +15,28 @@
 class Game
 {
 private:
+	int gridSize{};
+	int columns{};
+	int rows{};
+
 	Snake snake{ Vector2{300.0f, 300.0f}, 30, 10 };
 	Apple apple{ 120, 300, 30 };
 
+	SDL_Window* window;
+	SDL_Renderer* renderer;
+
 public:
-	int width{ 1250 };
-	int height{ 700 };
+	Game(int gridSize, int columns, int rows);
+	virtual ~Game() noexcept;
+
+	Game(const Game&) = default;
+	Game(Game&&) = default;
+	Game& operator=(const Game&) = default;
+	Game& operator=(Game&&) = default;
 
 	void Update(float deltaTime);
-	void Render(SDL_Renderer* renderer) const noexcept;
+	void Render() const noexcept;
+
+	int GetWidth() const noexcept;
+	int GetHeight() const noexcept;
 };
