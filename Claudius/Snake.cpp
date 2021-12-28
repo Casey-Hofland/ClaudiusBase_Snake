@@ -1,6 +1,7 @@
 #include "Snake.h"
 #include <ranges>
 #include <cmath>
+#include <numbers>
 
 // Constructors
 Snake::Snake(Vector2 position, int size, int bodyParts)
@@ -40,8 +41,22 @@ void Snake::Render(SDL_Renderer* renderer) const noexcept
     }
 
 	// Draw the head.
-	SDL_SetRenderDrawColor(renderer, headColor.r, headColor.g, headColor.b, headColor.a);
-	SDL_RenderFillRect(renderer, &Head());
+	//SDL_SetRenderDrawColor(renderer, headColor.r, headColor.g, headColor.b, headColor.a);
+	//SDL_RenderFillRect(renderer, &Head());
+
+	auto surface = SDL_LoadBMP("../Assets/Ulf.bmp");
+	auto texture = SDL_CreateTextureFromSurface(renderer, surface);
+
+	SDL_Rect textureRect = { 0, 0, 128, 128 };
+
+	SDL_Rect dest = Head();
+	dest.x -= m_size * 0.7f;
+	dest.y -= m_size * 0.7f;
+	dest.w += m_size * 0.7f * 2;
+	dest.h += m_size * 0.7f * 2;
+
+	const float angle = std::atan2(m_direction.y, m_direction.x) * (180.0f / std::numbers::pi_v<float>);
+	SDL_RenderCopyEx(renderer, texture, &textureRect, &dest, angle, {}, SDL_RendererFlip::SDL_FLIP_NONE);
 }
 
 void Snake::Grow()
