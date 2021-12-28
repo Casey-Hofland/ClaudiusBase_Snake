@@ -4,11 +4,7 @@
 #include "SDL.h"
 #pragma warning(pop)
 
-#include "RenderManager.h"
-#include "ResourceManager.h"
 #include "Game.h"
-#include "Sprite.h"
-#include "Image.h"
 #include "Input.h"
 #include "Time.h"
 
@@ -29,10 +25,7 @@ int main()
 		const char* error = SDL_GetError();
 		return 0;
 	}
-	
-	RenderManager renderManager{ renderer };
-	ResourceImpl resourceImpl(renderer);
-	ResourceManager resourceManager(resourceImpl);
+
 	Game game{};
 
 	constexpr int width = 1250;
