@@ -50,9 +50,6 @@ int main()
 	Time time{};
 	while (running)
 	{
-		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-		SDL_RenderClear(renderer);
-
 		time.Update();
 
 		// Update the game
@@ -60,8 +57,6 @@ int main()
 
 		// Render the game
 		game.Render(renderer);
-
-		SDL_RenderPresent(renderer);
 	}
 
 	SDL_DestroyRenderer(renderer);

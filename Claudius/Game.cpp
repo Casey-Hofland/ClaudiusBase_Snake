@@ -42,7 +42,12 @@ void Game::Update(float deltaTime)
 
 void Game::Render(SDL_Renderer* renderer) const noexcept
 {
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	SDL_RenderClear(renderer);
+
 	snake.Render(renderer);
 	apple.Render(renderer);
+
+	SDL_RenderPresent(renderer);
 }
 
