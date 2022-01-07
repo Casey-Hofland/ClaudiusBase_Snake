@@ -8,9 +8,11 @@ void Input::ProcessInput()
     int numKeys;
     auto keyboard = SDL_GetKeyboardState(&numKeys);
 
+    [[gsl::suppress(bounds.1, justification: "The warning is thrown by the third party SDL library.")]]
     currentFrame = { keyboard, keyboard + numKeys };
 }
 
+[[gsl::suppress(26812, justification : "The warning is thrown by the third party SDL library.")]]
 bool Input::GetKey(SDL_Scancode scancode) const noexcept
 {
     return scancode < currentFrame.size()

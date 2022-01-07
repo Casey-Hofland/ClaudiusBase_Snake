@@ -16,17 +16,17 @@
 class Game
 {
 private:
-	int gridSize{};
-	int columns{};
-	int rows{};
+	int m_gridSize{};
+	int m_columns{};
+	int m_rows{};
 
-	Snake snake{ -Vector2::one(), 0, 0 };
-	Apple apple{ -1, -1, 0 };
+	Snake m_snake{ -Vector2::one(), 0, 0 };
+	Apple m_apple{ -1, -1, 0 };
 
-	SDL_Window* window;
-	SDL_Renderer* renderer;
-	Time time{};
-	Input input{};
+	SDL_Window* m_window;
+	SDL_Renderer* m_renderer;
+	Time m_time{};
+	Input m_input{};
 
 	void ResetSnake();
 	void ResetApple();

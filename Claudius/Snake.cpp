@@ -8,7 +8,7 @@ Snake::Snake(Vector2 position, int size, int bodyParts)
     : m_position{ position }
     , m_size{ size }
 {
-    SDL_Rect bodyPartRect{ position.x, position.y, size, size };
+    SDL_Rect bodyPartRect{ static_cast<int>(position.x), static_cast<int>(position.y), size, size };
 
     m_head() = bodyPartRect;
     m_tail() = bodyPartRect;
@@ -51,10 +51,10 @@ void Snake::Render(SDL_Renderer* renderer) const noexcept
 
 	constexpr float headScale = 0.7f;
 	SDL_Rect dest = Head();
-	dest.x -= m_size * headScale;
-	dest.y -= m_size * headScale;
-	dest.w += m_size * headScale * 2;
-	dest.h += m_size * headScale * 2;
+	dest.x -= static_cast<int>(m_size * headScale);
+	dest.y -= static_cast<int>(m_size * headScale);
+	dest.w += static_cast<int>(m_size * headScale * 2);
+	dest.h += static_cast<int>(m_size * headScale * 2);
 
 	const float angle = std::atan2(m_direction.y, m_direction.x) * (180.0f / std::numbers::pi_v<float>);
 	SDL_RenderCopyEx(renderer, texture, &textureRect, &dest, angle, {}, SDL_RendererFlip::SDL_FLIP_NONE);
@@ -77,13 +77,14 @@ void Snake::Shrink() noexcept
 
 void Snake::SnapPositionToSize() noexcept
 {
-	m_position /= m_size;
+	m_position /= static_cast<const float>(m_size);
 	m_position.x = std::roundf(m_position.x);
 	m_position.y = std::roundf(m_position.y);
-	m_position *= m_size;
+	m_position *= static_cast<const float>(m_size);
 }
 
 // Change the snake's direction. Fails if the direction would be equal to that of the previous direction or inverse of that.
+[[gsl::suppress(f.6, justification : "BodyPartAt(1): The snake is never smaller than 2 body parts, so BodyPartAt(1) may never throw. \nm_bodyParts.push_front(head): we call m_bodyParts.pop_back() right before, so m_bodyParts.push_front(head) may never throw.")]]
 void Snake::ChangeDirection(Vector2 direction) noexcept
 {
 	direction = Vector2::normalize(direction);
@@ -141,11 +142,12 @@ bool Snake::IsSelfColliding() const noexcept
 void Snake::UpdateHead() noexcept
 {
 	auto& head = m_head();
-	head.x = std::roundf(m_position.x);
-	head.y = std::roundf(m_position.y);
+	head.x = static_cast<int>(std::roundf(m_position.x));
+	head.y = static_cast<int>(std::roundf(m_position.y));
 }
 
 // Update the body: for every factor of 'size' that the head is ahead of the body, take the last body part and move it towards the head.
+[[gsl::suppress(f.6, justification : "BodyPartAt(1): The snake is never smaller than 2 body parts, so BodyPartAt(1) may never throw. \nm_bodyParts.push_front(head): we call m_bodyParts.pop_back() right before, so m_bodyParts.push_front(head) may never throw.")]]
 void Snake::UpdateBody() noexcept
 {
 	const SDL_Rect head{ Head() };
@@ -161,8 +163,8 @@ void Snake::UpdateBody() noexcept
 		auto& nextBodyPartRef = m_head();
 
 		// Move the next body part behind the head based on the snakes movement direction.
-		nextBodyPartRef.x = head.x - m_direction.x * m_size * (bodyPartIndex - 1);
-		nextBodyPartRef.y = head.y - m_direction.y * m_size * (bodyPartIndex - 1);
+		nextBodyPartRef.x = static_cast<int>(head.x - m_direction.x * m_size * (bodyPartIndex - 1));
+		nextBodyPartRef.y = static_cast<int>(head.y - m_direction.y * m_size * (bodyPartIndex - 1));
 
 		// In the case where the head is not perfectly on the grid and our direction is a factor of minus one or less, solve for incorrect snapping.
 		if (m_direction.x <= -1.0f && head.x % m_size != 0)
@@ -188,6 +190,7 @@ void Snake::UpdateBody() noexcept
 }
 
 // Update the tail: take the distance of the head to the second body part, invert it, and apply it to the distance of the tail to the second to last body part.
+[[gsl::suppress(f.6, justification : "BodyPartAt(1): The snake is never smaller than 2 body parts, so BodyPartAt(1) may never throw. \nBodyPartAt(secondToLastBodyPartIndex): we are retrieving an index that we know is less than the BodyPartsSize, so BodyPartAt(secondToLastBodyPartIndex) may never throw.")]]
 void Snake::UpdateTail() noexcept
 {
 	auto& tailRef = m_tail();

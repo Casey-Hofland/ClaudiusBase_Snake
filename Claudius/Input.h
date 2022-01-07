@@ -10,8 +10,8 @@
 
 class Input
 {
-    std::vector<Uint8> currentFrame{0};
-    std::vector<Uint8> lastFrame{0};
+    std::vector<Uint8> currentFrame{};
+    std::vector<Uint8> lastFrame{};
 
 public:
     void ProcessInput();

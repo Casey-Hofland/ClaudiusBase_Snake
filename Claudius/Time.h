@@ -8,15 +8,15 @@
 
 class Time
 {
-    unsigned int m_frameCount;
+    unsigned int m_frameCount{};
 
     float m_timeScale{ 1.0f };
 
-    float m_time;
-    float m_deltaTime;
+    float m_time{};
+    float m_deltaTime{};
 
-    float m_unscaledTime;
-    float m_unscaledDeltaTime;
+    float m_unscaledTime{};
+    float m_unscaledDeltaTime{};
 
     Uint64 m_now{ SDL_GetPerformanceCounter() };
     Uint64 m_last{};
