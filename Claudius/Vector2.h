@@ -44,18 +44,13 @@ struct Vector2
 	friend Vector2 operator/(Vector2 lhs, const float& rhs) noexcept;
 	friend Vector2 operator/(const float& lhs, Vector2 rhs) noexcept;	
 
-	// Comparison Operators
+	// Comparison operators
 	bool operator==(const Vector2& rhs) const noexcept;
 	bool operator!=(const Vector2& rhs) const noexcept;
 
-	// User-defined methods
-	Vector2 perpendicular() const;
-	Vector2 unit() const;
-
-	float length() const;
-	float length_squared() const;
-	float dot(const Vector2& rhs) const;
-	float cross(const Vector2& rhs) const;
-	void normalize();
-
+	// Static functions
+	static Vector2 perpendicular(const Vector2& vector2) noexcept;
+	static float length(const Vector2& vector2) noexcept;
+	static float length_squared(const Vector2& vector2) noexcept;
+	static Vector2 normalize(const Vector2& vector2) noexcept;
 };

@@ -117,43 +117,30 @@ bool Vector2::operator!=(const Vector2& rhs) const noexcept
 	return !(*this == rhs);
 }
 
-// User-defined methods
-Vector2 Vector2::perpendicular() const
+// Static functions
+Vector2 Vector2::perpendicular(const Vector2& vector2) noexcept
 {
-	return Vector2(-y, x); // 90 degrees to the right
+	return { -vector2.y, vector2.x }; // 90 degrees to the right
 }
 
-Vector2 Vector2::unit() const
+float Vector2::length(const Vector2& vector2) noexcept
 {
-	Vector2 result(*this); 
-	result.normalize(); 
-	return result;
+	return sqrtf(Vector2::length_squared(vector2));
 }
 
-float Vector2::length() const
+float Vector2::length_squared(const Vector2& vector2) noexcept
 {
-	return sqrtf(x * x + y * y);
+	return vector2.x * vector2.x 
+		+ vector2.y * vector2.y;
 }
 
-float Vector2::length_squared() const
+Vector2 Vector2::normalize(const Vector2& vector2) noexcept
 {
-	return x * x + y * y;
-}
+	float length = Vector2::length(vector2);
+	if (length <= 0.0f)
+	{
+		return {};
+	}
 
-float Vector2::dot(const Vector2& rhs) const
-{
-	return x * rhs.x + y * rhs.y;
-}
-
-float Vector2::cross(const Vector2& rhs) const
-{
-	return x * rhs.y - y * rhs.x;
-}
-
-void Vector2::normalize()
-{
-	float len = length(); 
-	if (len <= 0.0f) return;
-	x /= len; 
-	y /= len;
+	return { vector2 / length };
 }
