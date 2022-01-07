@@ -64,6 +64,7 @@ void Game::Update()
 	{
 		snake.score++;
 		snake.Grow();
+		snake.speed *= 1.05f;
 
 		ResetApple();
 	}
