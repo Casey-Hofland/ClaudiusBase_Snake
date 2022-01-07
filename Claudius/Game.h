@@ -11,6 +11,7 @@
 #include "Apple.h"
 #include "Snake.h"
 #include "Time.h"
+#include "Input.h"
 
 class Game
 {
@@ -25,9 +26,11 @@ private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 	Time time{};
+	Input input{};
 
 	void ResetSnake();
 	void ResetApple();
+	void TurnSnake() noexcept;
 
 public:
 	Game(int gridSize, int columns, int rows);

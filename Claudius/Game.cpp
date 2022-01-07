@@ -45,11 +45,13 @@ Game::~Game() noexcept
 #pragma region Core Game functions
 void Game::Update()
 {
-	// Update time.
+	// Update systems.
 	time.Update();
-	const auto deltaTime = time.GetDeltaTime();
-	
+	input.ProcessInput();
+
 	// Update game objects.
+	const auto deltaTime = time.GetDeltaTime();
+	TurnSnake();
 	snake.Update(deltaTime);
 
 	// Check snake collision.
@@ -91,6 +93,26 @@ void Game::ResetApple()
 {
 	auto [appleX, appleY] = GetRandomUniqueGridPosition();
 	apple = { appleX, appleY, gridSize };
+}
+
+void Game::TurnSnake() noexcept
+{
+	if (input.GetKeyDown(SDL_Scancode::SDL_SCANCODE_LEFT))
+	{
+		snake.ChangeDirection(Vector2::left());
+	}
+	else if (input.GetKeyDown(SDL_Scancode::SDL_SCANCODE_RIGHT))
+	{
+		snake.ChangeDirection(Vector2::right());
+	}
+	else if (input.GetKeyDown(SDL_Scancode::SDL_SCANCODE_UP))
+	{
+		snake.ChangeDirection(Vector2::down());
+	}
+	else if (input.GetKeyDown(SDL_Scancode::SDL_SCANCODE_DOWN))
+	{
+		snake.ChangeDirection(Vector2::up());
+	}
 }
 #pragma endregion
 
@@ -253,6 +275,6 @@ int Game::GetHeight() const noexcept
 
 bool Game::IsPlaying() const noexcept
 {
-	return !Input::GetKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
+	return !input.GetKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
 }
 #pragma endregion

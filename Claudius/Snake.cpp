@@ -22,8 +22,6 @@ Snake::Snake(Vector2 position, int size, int bodyParts)
 #pragma region Public update functions
 void Snake::Update(float deltaTime) noexcept
 {
-    ProcessInput();
-
 	m_position += speed * deltaTime * m_direction;
 
 	UpdateHead();
@@ -139,27 +137,6 @@ bool Snake::IsSelfColliding() const noexcept
 #pragma endregion
 
 #pragma region Private update functions
-void Snake::ProcessInput() noexcept
-{
-	// Change the direction based on input.
-	if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_LEFT))
-	{
-		ChangeDirection(Vector2::left());
-	}
-	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_RIGHT))
-	{
-		ChangeDirection(Vector2::right());
-	}
-	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_UP))
-	{
-		ChangeDirection(Vector2::down());
-	}
-	else if (Input::GetKey(SDL_Scancode::SDL_SCANCODE_DOWN))
-	{
-		ChangeDirection(Vector2::up());
-	}
-}
-
 // Update the head: round the floating position.
 void Snake::UpdateHead() noexcept
 {

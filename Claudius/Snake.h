@@ -19,8 +19,7 @@ private:
 	std::deque<SDL_Rect> m_bodyParts{ minimumBodyParts };
 
 	// Member functions
-	void ProcessInput() noexcept;	// Noexcept is implicit: ignore compiler warnings on BodyPartAt(1), BodyPartAt(BodyPartsSize() - 2), and bodyParts.push_front() right after bodyParts.pop_back().
-	void UpdateHead() noexcept;		// See above.
+	void UpdateHead() noexcept;		// Noexcept is implicit: ignore compiler warnings on BodyPartAt(1), BodyPartAt(BodyPartsSize() - 2), and bodyParts.push_front() right after bodyParts.pop_back().
 	void UpdateBody() noexcept;		// See above.
 	void UpdateTail() noexcept;		// See above.
 
