@@ -88,7 +88,7 @@ void Snake::SnapPositionToSize() noexcept
 // Change the snake's direction. Fails if the direction would be equal to that of the previous direction or inverse of that.
 void Snake::ChangeDirection(Vector2 direction) noexcept
 {
-	direction.normalize();
+	direction = Vector2::normalize(direction);
 
 	if (direction == this->m_direction
 		|| direction == -this->m_direction)
@@ -321,8 +321,7 @@ Vector2 Snake::GetDirection() const noexcept
 
 void Snake::SetDirection(Vector2 direction) noexcept
 {
-	this->m_direction = direction;
-	this->m_direction.normalize();
+	this->m_direction = Vector2::normalize(direction);
 }
 
 Vector2 Snake::GetPosition() const noexcept
