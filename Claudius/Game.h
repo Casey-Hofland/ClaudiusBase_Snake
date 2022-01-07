@@ -47,6 +47,8 @@ public:
 	std::tuple<int, int> PositionToGridIndex(int x, int y) const noexcept;
 
 	bool GridIndexIsEmpty(int column, int row) const noexcept;
+	bool InsideWindow(const SDL_Point& point) const noexcept;
+	bool InsideWindow(const SDL_Rect& rect) const noexcept;
 
 	int GetGridSize() const noexcept;
 	void SetGridSize(int gridSize) noexcept;

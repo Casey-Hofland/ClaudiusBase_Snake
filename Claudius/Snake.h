@@ -47,6 +47,7 @@ public:
 	void Shrink() noexcept;
 	void SnapPositionToSize() noexcept;
 	void ChangeDirection(Vector2 direction) noexcept;
+	bool IsSelfColliding() const noexcept;
 
 	// Getters & Setters
 	const SDL_Rect& Head() const noexcept;

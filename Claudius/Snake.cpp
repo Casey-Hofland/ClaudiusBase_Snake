@@ -112,6 +112,27 @@ void Snake::ChangeDirection(Vector2 direction) noexcept
 	// Move the position by an amount that will ensure that the snake can never collide with itself when performing a U-turn.
 	m_position += m_size * 0.5f * m_direction;
 }
+
+bool Snake::IsSelfColliding() const noexcept
+{
+	const auto& head = Head();
+	const auto& tail = Tail();
+
+	// For the third to second-to-last bodypart...
+	for (const auto& bodyPart : m_bodyParts
+		| std::views::take(BodyPartsSize() - 1)
+		| std::views::drop(2))
+	{
+		// Check if we are colliding with the head, and that we are not at the same position of the tail (this prevents self collisions returning true when the snake is coiled up during the start of the game).
+		if (SDL_HasIntersection(&head, &bodyPart)
+			&& !(bodyPart.x == tail.x && bodyPart.y == tail.y))
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
 #pragma endregion
 
 #pragma region Private update functions

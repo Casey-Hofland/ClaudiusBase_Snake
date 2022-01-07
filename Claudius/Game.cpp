@@ -49,26 +49,9 @@ void Game::Update()
 
 	snake.Update(deltaTime);
 
-	// Snake colliding on themselves.
-	const auto& head = snake.Head();
-	const auto& tail = snake.Tail();
-	for (size_t i = 2; i < snake.BodyPartsSize(); i++)
-	{
-		const auto& bodyPart = snake.BodyPartAt(i);
-		if (SDL_HasIntersection(&head, &bodyPart)
-			&& (bodyPart.x != tail.x || bodyPart.y != tail.y))
-		{
-			auto [snakeX, snakeY] = GetRandomUniqueGridPosition();
-			snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, gridSize, 10 };
-			break;
-		}
-	}
-
-	// Snake going out of bounds.
-	if (snake.GetPosition().x + snake.GetSize() > GetWidth()
-		|| snake.GetPosition().x < 0
-		|| snake.GetPosition().y + snake.GetSize() > GetHeight()
-		|| snake.GetPosition().y < 0)
+	// Check snake collision.
+	if (snake.IsSelfColliding()
+		|| !InsideWindow(snake.Head()))
 	{
 		auto [snakeX, snakeY] = GetRandomUniqueGridPosition();
 		snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, gridSize, 10 };
@@ -189,6 +172,23 @@ bool Game::GridIndexIsEmpty(int column, int row) const noexcept
 	return true;
 }
 
+bool Game::InsideWindow(const SDL_Point& point) const noexcept
+{
+	SDL_Rect window{ 0, 0, GetWidth(), GetHeight() };
+	return SDL_PointInRect(&point, &window);
+}
+
+bool Game::InsideWindow(const SDL_Rect& rect) const noexcept
+{
+	SDL_Point upperleft{ rect.x, rect.y };
+	SDL_Point upperRight{ rect.x + std::max(rect.w - 1, 0), rect.y };
+	SDL_Point bottomLeft{ rect.x, rect.y + std::max(rect.h - 1, 0) };
+	// no need to check for bottom left: we already know the rect is inside the grid if these 3 points are.
+
+	return InsideWindow(upperleft) 
+		&& InsideWindow(upperRight) 
+		&& InsideWindow(bottomLeft);
+}
 int Game::GetGridSize() const noexcept
 {
 	return gridSize;
