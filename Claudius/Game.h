@@ -56,4 +56,5 @@ public:
 
 	unsigned int GetWidth() const noexcept;
 	unsigned int GetHeight() const noexcept;
+	bool IsPlaying() const noexcept;
 };

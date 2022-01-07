@@ -2,6 +2,7 @@
 #include <stdexcept>
 #include <ctime>
 #include <numeric>
+#include "Input.h"
 
 Game::Game(unsigned int gridSize, unsigned int columns, unsigned int rows)
 	: gridSize{ gridSize }
@@ -225,4 +226,9 @@ unsigned int Game::GetWidth() const noexcept
 unsigned int Game::GetHeight() const noexcept
 {
 	return GetGridSize() * GetRows();
+}
+
+bool Game::IsPlaying() const noexcept
+{
+	return !Input::GetKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
 }

@@ -14,7 +14,7 @@ int main()
 	Game game {30, 40, 20};
 
 	Time time{};
-	while (true)
+	while (game.IsPlaying())
 	{
 		time.Update();
 
