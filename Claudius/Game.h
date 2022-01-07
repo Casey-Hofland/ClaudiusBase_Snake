@@ -15,9 +15,9 @@
 class Game
 {
 private:
-	unsigned int gridSize{};
-	unsigned int columns{};
-	unsigned int rows{};
+	int gridSize{};
+	int columns{};
+	int rows{};
 
 	Snake snake{ -Vector2::one(), 0, 0 };
 	Apple apple{ -1, -1, 0 };
@@ -27,7 +27,7 @@ private:
 	Time time{};
 
 public:
-	Game(unsigned int gridSize, unsigned int columns, unsigned int rows);
+	Game(int gridSize, int columns, int rows);
 	virtual ~Game() noexcept;
 
 	Game(const Game&) = default;
@@ -38,24 +38,24 @@ public:
 	void Update();
 	void Render() const noexcept;
 
-	std::tuple<unsigned int, unsigned int> GetRandomUniqueGridIndex() const;
-	std::tuple<unsigned int, unsigned int> GetRandomUniqueGridPosition() const;
-	std::tuple<unsigned int, unsigned int> GetRandomGridIndex() const noexcept;
-	std::tuple<unsigned int, unsigned int> GetRandomGridPosition() const noexcept;
+	std::tuple<int, int> GetRandomUniqueGridIndex() const;
+	std::tuple<int, int> GetRandomUniqueGridPosition() const;
+	std::tuple<int, int> GetRandomGridIndex() const noexcept;
+	std::tuple<int, int> GetRandomGridPosition() const noexcept;
 
-	std::tuple<unsigned int, unsigned int> GridIndexToPosition(unsigned int column, unsigned int row) const noexcept;
-	std::tuple<unsigned int, unsigned int> PositionToGridIndex(unsigned int x, unsigned int y) const noexcept;
+	std::tuple<int, int> GridIndexToPosition(int column, int row) const noexcept;
+	std::tuple<int, int> PositionToGridIndex(int x, int y) const noexcept;
 
-	bool GridIndexIsEmpty(unsigned int column, unsigned int row) const noexcept;
+	bool GridIndexIsEmpty(int column, int row) const noexcept;
 
-	unsigned int GetGridSize() const noexcept;
-	void SetGridSize(unsigned int gridSize) noexcept;
-	unsigned int GetColumns() const noexcept;
-	void SetColumns(unsigned int columns) noexcept;
-	unsigned int GetRows() const noexcept;
-	void SetRows(unsigned int rows) noexcept;
+	int GetGridSize() const noexcept;
+	void SetGridSize(int gridSize) noexcept;
+	int GetColumns() const noexcept;
+	void SetColumns(int columns) noexcept;
+	int GetRows() const noexcept;
+	void SetRows(int rows) noexcept;
 
-	unsigned int GetWidth() const noexcept;
-	unsigned int GetHeight() const noexcept;
+	int GetWidth() const noexcept;
+	int GetHeight() const noexcept;
 	bool IsPlaying() const noexcept;
 };

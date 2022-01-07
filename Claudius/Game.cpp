@@ -4,7 +4,7 @@
 #include <numeric>
 #include "Input.h"
 
-Game::Game(unsigned int gridSize, unsigned int columns, unsigned int rows)
+Game::Game(int gridSize, int columns, int rows)
 	: gridSize{ gridSize }
 	, columns{ columns }
 	, rows{ rows }
@@ -28,10 +28,10 @@ Game::Game(unsigned int gridSize, unsigned int columns, unsigned int rows)
 	std::srand(std::time(nullptr));
 
 	auto [snakeX, snakeY] = GetRandomUniqueGridPosition();
-	snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, static_cast<int>(gridSize), 10 };
+	snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, gridSize, 10 };
 
 	auto [appleX, appleY] = GetRandomUniqueGridPosition();
-	apple = { static_cast<int>(appleX), static_cast<int>(appleY), static_cast<int>(gridSize) };
+	apple = { appleX, appleY, gridSize };
 }
 
 Game::~Game() noexcept
@@ -59,7 +59,7 @@ void Game::Update()
 			&& (bodyPart.x != tail.x || bodyPart.y != tail.y))
 		{
 			auto [snakeX, snakeY] = GetRandomUniqueGridPosition();
-			snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, static_cast<int>(gridSize), 10 };
+			snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, gridSize, 10 };
 			break;
 		}
 	}
@@ -71,7 +71,7 @@ void Game::Update()
 		|| snake.GetPosition().y < 0)
 	{
 		auto [snakeX, snakeY] = GetRandomUniqueGridPosition();
-		snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, static_cast<int>(gridSize), 10 };
+		snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, gridSize, 10 };
 	}
 
 	// Snake collide on apple
@@ -81,7 +81,7 @@ void Game::Update()
 		snake.Grow();
 
 		auto [appleX, appleY] = GetRandomUniqueGridPosition();
-		apple = { static_cast<int>(appleX), static_cast<int>(appleY), static_cast<int>(gridSize) };
+		apple = { appleX, appleY, gridSize };
 	}
 }
 
@@ -96,23 +96,23 @@ void Game::Render() const noexcept
 	SDL_RenderPresent(renderer);
 }
 
-std::tuple<unsigned int, unsigned int> Game::GetRandomUniqueGridIndex() const
+std::tuple<int, int> Game::GetRandomUniqueGridIndex() const
 {
-	std::vector<unsigned int> columns(GetColumns());
+	std::vector<int> columns(GetColumns());
 	std::iota(columns.begin(), columns.end(), 0);
 
 	for (size_t i = columns.size(); i > 0; i--)
 	{
-		const unsigned int columnIndex = std::rand() % i;
-		const unsigned int column = columns.at(columnIndex);
+		const int columnIndex = std::rand() % i;
+		const int column = columns.at(columnIndex);
 
-		std::vector<unsigned int> rows(GetRows());
+		std::vector<int> rows(GetRows());
 		std::iota(rows.begin(), rows.end(), 0);
 
 		for (size_t j = rows.size(); j > 0; j--)
 		{
-			const unsigned int rowIndex = std::rand() % j;
-			const unsigned int row = rows.at(rowIndex);
+			const int rowIndex = std::rand() % j;
+			const int row = rows.at(rowIndex);
 
 			if (GridIndexIsEmpty(column, row))
 			{
@@ -128,7 +128,7 @@ std::tuple<unsigned int, unsigned int> Game::GetRandomUniqueGridIndex() const
 	return std::make_tuple(-1, -1);
 }
 
-std::tuple<unsigned int, unsigned int> Game::GetRandomUniqueGridPosition() const
+std::tuple<int, int> Game::GetRandomUniqueGridPosition() const
 {
 	auto gridIndexTuple = GetRandomUniqueGridIndex();
 
@@ -141,33 +141,33 @@ std::tuple<unsigned int, unsigned int> Game::GetRandomUniqueGridPosition() const
 	return GridIndexToPosition(column, row);
 }
 
-std::tuple<unsigned int, unsigned int> Game::GetRandomGridIndex() const noexcept
+std::tuple<int, int> Game::GetRandomGridIndex() const noexcept
 {
-	const unsigned int column = std::rand() % GetColumns();
-	const unsigned int row = std::rand() % GetRows();
+	const int column = std::rand() % GetColumns();
+	const int row = std::rand() % GetRows();
 
 	return std::make_tuple(column, row);
 }
 
-std::tuple<unsigned int, unsigned int> Game::GetRandomGridPosition() const noexcept
+std::tuple<int, int> Game::GetRandomGridPosition() const noexcept
 {
 	auto [column, row] = GetRandomGridIndex();
 	return GridIndexToPosition(column, row);
 }
 
-std::tuple<unsigned int, unsigned int> Game::GridIndexToPosition(unsigned int column, unsigned int row) const noexcept
+std::tuple<int, int> Game::GridIndexToPosition(int column, int row) const noexcept
 {
 	const unsigned int gridSize = GetGridSize();
 	return std::make_tuple(column * gridSize, row * gridSize);
 }
 
-std::tuple<unsigned int, unsigned int> Game::PositionToGridIndex(unsigned int x, unsigned int y) const noexcept
+std::tuple<int, int> Game::PositionToGridIndex(int x, int y) const noexcept
 {
 	const unsigned int gridSize = GetGridSize();
 	return std::make_tuple(x / gridSize, y / gridSize);
 }
 
-bool Game::GridIndexIsEmpty(unsigned int column, unsigned int row) const noexcept
+bool Game::GridIndexIsEmpty(int column, int row) const noexcept
 {
 	auto [x, y] = GridIndexToPosition(column, row);
 
@@ -189,12 +189,12 @@ bool Game::GridIndexIsEmpty(unsigned int column, unsigned int row) const noexcep
 	return true;
 }
 
-unsigned int Game::GetGridSize() const noexcept
+int Game::GetGridSize() const noexcept
 {
 	return gridSize;
 }
 
-void Game::SetGridSize(unsigned int gridSize) noexcept
+void Game::SetGridSize(int gridSize) noexcept
 {
 	this->gridSize = gridSize;
 	snake.SetSize(gridSize);
@@ -202,32 +202,32 @@ void Game::SetGridSize(unsigned int gridSize) noexcept
 	apple.rect.h = gridSize;
 }
 
-unsigned int Game::GetColumns() const noexcept
+int Game::GetColumns() const noexcept
 {
 	return columns;
 }
 
-void Game::SetColumns(unsigned int columns) noexcept
+void Game::SetColumns(int columns) noexcept
 {
 	this->columns = columns;
 }
 
-unsigned int Game::GetRows() const noexcept
+int Game::GetRows() const noexcept
 {
 	return rows;
 }
 
-void Game::SetRows(unsigned int rows) noexcept
+void Game::SetRows(int rows) noexcept
 {
 	this->rows = rows;
 }
 
-unsigned int Game::GetWidth() const noexcept
+int Game::GetWidth() const noexcept
 {
 	return GetGridSize() * GetColumns();
 }
 
-unsigned int Game::GetHeight() const noexcept
+int Game::GetHeight() const noexcept
 {
 	return GetGridSize() * GetRows();
 }
