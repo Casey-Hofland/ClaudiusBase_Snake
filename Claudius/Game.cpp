@@ -4,6 +4,7 @@
 #include <numeric>
 #include "Input.h"
 
+#pragma region Constructors / Destructors
 Game::Game(int gridSize, int columns, int rows)
 	: gridSize{ gridSize }
 	, columns{ columns }
@@ -25,6 +26,7 @@ Game::Game(int gridSize, int columns, int rows)
 		throw std::invalid_argument("Could not create renderer: " + std::string(SDL_GetError()) + ".\n");
 	}
 
+	// Initialize random with a time-based seed.
 	std::srand(std::time(nullptr));
 
 	// Setup the game.
@@ -38,13 +40,16 @@ Game::~Game() noexcept
 	SDL_DestroyWindow(window);
 	SDL_Quit();
 }
+#pragma endregion
 
+#pragma region Core Game functions
 void Game::Update()
 {
-	// Update Time.
+	// Update time.
 	time.Update();
 	const auto deltaTime = time.GetDeltaTime();
-
+	
+	// Update game objects.
 	snake.Update(deltaTime);
 
 	// Check snake collision.
@@ -54,7 +59,7 @@ void Game::Update()
 		ResetSnake();
 	}
 
-	// Snake collide on apple
+	// Check apple collision.
 	if (SDL_HasIntersection(&snake.Head(), &apple.rect))
 	{
 		snake.score++;
@@ -86,6 +91,9 @@ void Game::ResetApple()
 	auto [appleX, appleY] = GetRandomUniqueGridPosition();
 	apple = { appleX, appleY, gridSize };
 }
+#pragma endregion
+
+#pragma region Grid functions
 std::tuple<int, int> Game::GetRandomUniqueGridIndex() const
 {
 	std::vector<int> columns(GetColumns());
@@ -196,6 +204,9 @@ bool Game::InsideWindow(const SDL_Rect& rect) const noexcept
 		&& InsideWindow(upperRight) 
 		&& InsideWindow(bottomLeft);
 }
+#pragma endregion
+
+#pragma region Getters & Setters
 int Game::GetGridSize() const noexcept
 {
 	return gridSize;
@@ -243,3 +254,4 @@ bool Game::IsPlaying() const noexcept
 {
 	return !Input::GetKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
 }
+#pragma endregion
