@@ -26,6 +26,9 @@ private:
 	SDL_Renderer* renderer;
 	Time time{};
 
+	void ResetSnake();
+	void ResetApple();
+
 public:
 	Game(int gridSize, int columns, int rows);
 	virtual ~Game() noexcept;

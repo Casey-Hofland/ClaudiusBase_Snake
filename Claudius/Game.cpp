@@ -27,11 +27,9 @@ Game::Game(int gridSize, int columns, int rows)
 
 	std::srand(std::time(nullptr));
 
-	auto [snakeX, snakeY] = GetRandomUniqueGridPosition();
-	snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, gridSize, 10 };
-
-	auto [appleX, appleY] = GetRandomUniqueGridPosition();
-	apple = { appleX, appleY, gridSize };
+	// Setup the game.
+	ResetSnake();
+	ResetApple();
 }
 
 Game::~Game() noexcept
@@ -53,8 +51,7 @@ void Game::Update()
 	if (snake.IsSelfColliding()
 		|| !InsideWindow(snake.Head()))
 	{
-		auto [snakeX, snakeY] = GetRandomUniqueGridPosition();
-		snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, gridSize, 10 };
+		ResetSnake();
 	}
 
 	// Snake collide on apple
@@ -63,8 +60,7 @@ void Game::Update()
 		snake.score++;
 		snake.Grow();
 
-		auto [appleX, appleY] = GetRandomUniqueGridPosition();
-		apple = { appleX, appleY, gridSize };
+		ResetApple();
 	}
 }
 
@@ -79,6 +75,17 @@ void Game::Render() const noexcept
 	SDL_RenderPresent(renderer);
 }
 
+void Game::ResetSnake()
+{
+	auto [snakeX, snakeY] = GetRandomUniqueGridPosition();
+	snake = { Vector2{static_cast<float>(snakeX), static_cast<float>(snakeY)}, gridSize, 10 };
+}
+
+void Game::ResetApple()
+{
+	auto [appleX, appleY] = GetRandomUniqueGridPosition();
+	apple = { appleX, appleY, gridSize };
+}
 std::tuple<int, int> Game::GetRandomUniqueGridIndex() const
 {
 	std::vector<int> columns(GetColumns());
