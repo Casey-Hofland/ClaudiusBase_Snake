@@ -24,6 +24,7 @@ private:
 
 	SDL_Window* window;
 	SDL_Renderer* renderer;
+	Time time{};
 
 public:
 	Game(unsigned int gridSize, unsigned int columns, unsigned int rows);
@@ -34,7 +35,7 @@ public:
 	Game& operator=(const Game&) = default;
 	Game& operator=(Game&&) = default;
 
-	void Update(float deltaTime);
+	void Update();
 	void Render() const noexcept;
 
 	std::tuple<unsigned int, unsigned int> GetRandomUniqueGridIndex() const;

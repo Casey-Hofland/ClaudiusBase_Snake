@@ -12,16 +12,9 @@
 int main()
 {
 	Game game {30, 40, 20};
-
-	Time time{};
 	while (game.IsPlaying())
 	{
-		time.Update();
-
-		// Update the game
-		game.Update(time.GetDeltaTime());
-
-		// Render the game
+		game.Update();
 		game.Render();
 	}
 

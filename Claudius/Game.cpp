@@ -41,8 +41,12 @@ Game::~Game() noexcept
 	SDL_Quit();
 }
 
-void Game::Update(float deltaTime)
+void Game::Update()
 {
+	// Update Time.
+	time.Update();
+	const auto deltaTime = time.GetDeltaTime();
+
 	snake.Update(deltaTime);
 
 	// Snake colliding on themselves.
